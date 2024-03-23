@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "I:\\Dev_space\\Dev_space\\Dev_space.csproj": {}
+    "D:\\Dev-Space\\CSG1-Shahbil\\Dev_space\\Dev_space\\Dev_space.csproj": {}
   },
   "projects": {
-    "I:\\Dev_space\\Dev_space\\Dev_space.csproj": {
+    "D:\\Dev-Space\\CSG1-Shahbil\\Dev_space\\Dev_space\\Dev_space.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\Dev_space\\Dev_space\\Dev_space.csproj",
+        "projectUniqueName": "D:\\Dev-Space\\CSG1-Shahbil\\Dev_space\\Dev_space\\Dev_space.csproj",
         "projectName": "Dev_space",
-        "projectPath": "I:\\Dev_space\\Dev_space\\Dev_space.csproj",
+        "projectPath": "D:\\Dev-Space\\CSG1-Shahbil\\Dev_space\\Dev_space\\Dev_space.csproj",
         "packagesPath": "C:\\Users\\Laith\\.nuget\\packages\\",
-        "outputPath": "I:\\Dev_space\\Dev_space\\obj\\",
+        "outputPath": "D:\\Dev-Space\\CSG1-Shahbil\\Dev_space\\Dev_space\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -27,6 +27,12 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "D:\\library asp.net core\\.nuget\\packages": {},
+          "D:\\library asp.net core\\.nuget\\packages\\AspNetCore.Identity.EntityFrameworkCoreew folder": {},
+          "D:\\library asp.net core\\.nuget\\packages\\microsoft.aspnetcore.identity.ui": {},
+          "D:\\library asp.net core\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver": {},
+          "D:\\library asp.net core\\.nuget\\packages\\microsoft.entityframeworkcore.tools": {},
+          "D:\\library asp.net core\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design": {},
+          "D:\\library asp.net core\\.nuget\\packages\\swashbuckle.aspnetcore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,6 +50,30 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
