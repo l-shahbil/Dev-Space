@@ -32,7 +32,7 @@ namespace Dev_space.Repository
         {
             return context.Set<T>().Find(Id);
         }
-        ICollection<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return context.Set<T>().ToList();
         }
@@ -75,5 +75,7 @@ namespace Dev_space.Repository
             context.Set<T>().UpdateRange(items);
             context.SaveChanges();
         }
+
+        
     }
 }

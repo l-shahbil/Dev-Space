@@ -2,7 +2,134 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+
+<div class="home-page">
+                        
+    <div class="think-container">
+        <p>في ماذا تفكر؟</p>
+        <hr>
+        <div class="input-box">
+            <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt="Profile"></div>
+            <input  type="text" placeholder="اكتب ماتفكر فيه" onclick="showAndHide('input-popup-shadow')">
+        </div>
+                            
+        <div class="input-popup-shadow">
+            <div class="popup-input">
+                <p>في ماذا تفكر؟</p>
+                <hr>
+                <div class="popup-input-box">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt="Profile"></div>
+                    <textarea name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
+                    <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <div class="media-buttons">
+                        <button class="btn"><img src="~/lib/assites/Icons/image.svg" alt="">إضافة صورة</button>
+                        <button class="btn" onclick="showAndHide('code-box')"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة كود</a>
+                        <button class="btn"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة فديو</button>
+                    </div>  
+                    <input type="submit" class="btn btn-primary" value="نشر">
+                    <div class="btn btn-secondary cansle-btn" onclick="showAndHide('input-popup-shadow')" style="display: inline-block;">الغاء</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="twit-container">
+        <div class="twit-header">
+            <div class="account-info">
+                <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                <div class="user-info">
+                    <p class="account-name">عبدالله بن شحبل</p>
+                    <small class="account-username">abud3l</small>
+                </div>
+            </div>
+            <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+        </div>
+        <div class="twit-content">
+            <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+            <div class="image-container twit-image">
+                <img src="~/lib/assites/images/twitte-image.png" alt="">
+            </div>
+        </div>
+        <div class="twit-intraction-buttons">
+            <button class="like">
+                <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                <p class="like-amount">215 اعجاب</p>
+            </button>
+            <button class="comment">
+                <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                <p class="comment-amount">13 تعليق</p>
+            </button>
+            <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+            <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+        </div>
+    </div>
+                        
+    <div class="twit-container">
+        <div class="twit-header">
+            <div class="account-info">
+                <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                <div class="user-info">
+                    <p class="account-name">عبدالله بن شحبل</p>
+                    <small class="account-username">abud3l</small>
+                </div>
+            </div>
+            <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+        </div>
+        <div class="twit-content">
+            <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+        </div>
+        <div class="twit-intraction-buttons">
+            <button class="like">
+                <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                <p class="like-amount">215 اعجاب</p>
+            </button>
+            <button class="comment">
+                <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                <p class="comment-amount">13 تعليق</p>
+            </button>
+            <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+            <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+        </div>
+    </div>
+
+    <div class="twit-container">
+        <div class="twit-header">
+            <div class="account-info">
+                <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                <div class="user-info">
+                    <p class="account-name">عبدالله بن شحبل</p>
+                    <small class="account-username">abud3l</small>
+                </div>
+            </div>
+            <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+        </div>
+        <div class="twit-content">
+            <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+            <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+            <pre class="code" style="direction: ltr;">
+consle.log(fdsf)
+if(int i = 0 ; i < 10; i++)
+{
+
+}</pre>
+        </div>
+        <div class="twit-intraction-buttons">
+            <button class="like">
+                <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                <p class="like-amount">215 اعجاب</p>
+            </button>
+            <button class="comment">
+                <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                <p class="comment-amount">13 تعليق</p>
+            </button>
+            <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+            <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+        </div>
+    </div>
 </div>
