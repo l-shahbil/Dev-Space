@@ -14,7 +14,7 @@ namespace Dev_space.Repository
         }
         
 
-        IEnumerable<T> IRepository<T>.FindAllItem(params string[] agers)
+        public IEnumerable<T> FindAllItem(params string[] agers)
         {
             IQueryable<T> query = context.Set<T>();
 
@@ -28,52 +28,54 @@ namespace Dev_space.Repository
             return query.ToList();
         }
 
-        T IRepository<T>.FindById(int Id)
+        public T FindById(int Id)
         {
             return context.Set<T>().Find(Id);
         }
-        ICollection<T> IRepository<T>.GetAll()
+        public IEnumerable<T> GetAll()
         {
             return context.Set<T>().ToList();
         }
-        T IRepository<T>.SelectOne(Expression<Func<T, bool>> match)
+        public T SelectOne(Expression<Func<T, bool>> match)
         {
             return context.Set<T>().SingleOrDefault(match);
         }
         //CURD
-        void IRepository<T>.AddItem(T item)
+         public void AddItem(T item)
         {
             context.Set<T>().Add(item);
             context.SaveChanges();
         }
 
-        void IRepository<T>.AddList(IEnumerable<T> items)
+        public void AddList(IEnumerable<T> items)
         {
             context.Set<T>().AddRange(items);
             context.SaveChanges();
         }
-        void IRepository<T>.RemoveItem(T item)
+        public void RemoveItem(T item)
         {
             context.Set<T>().Remove(item);
             context.SaveChanges();
         }
 
-        void IRepository<T>.RemoveList(IEnumerable<T> items)
+        public void RemoveList(IEnumerable<T> items)
         {
             context.Set<T>().RemoveRange(items);
             context.SaveChanges();
         }
 
-        void IRepository<T>.UpdateItem(T item)
+        public void UpdateItem(T item)
         {
             context.Set<T>().Update(item);
             context.SaveChanges();
         }
 
-        void IRepository<T>.UpdateList(IEnumerable<T> items)
+        public void UpdateList(IEnumerable<T> items)
         {
             context.Set<T>().UpdateRange(items);
             context.SaveChanges();
         }
+
+        
     }
 }
