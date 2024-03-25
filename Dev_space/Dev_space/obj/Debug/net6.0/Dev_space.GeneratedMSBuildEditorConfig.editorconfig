@@ -15,12 +15,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\LENOVO\Desktop\CSG1-Shahbil\CSG1-Shahbil\Dev_space\Dev_space
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/Bookmarks/bookmarks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va21hcmtzXGJvb2ttYXJrcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/FrindProfile/frindProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJpbmRQcm9maWxlXGZyaW5kUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/Hashtag/hashtag.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFzaHRhZ1xoYXNodGFnLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/PostComments/PostComments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdENvbW1lbnRzXFBvc3RDb21tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LENOVO/Desktop/CSG1-Shahbil/CSG1-Shahbil/Dev_space/Dev_space/Views/Profile/profile.cshtml]

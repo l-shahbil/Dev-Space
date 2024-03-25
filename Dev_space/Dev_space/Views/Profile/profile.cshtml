@@ -3,6 +3,9 @@
 *@
 @{
 }
+<script>
+    document.querySelector(".navigation > a:nth-child(2)").classList.add("active-bar");
+</script>
 
 <div class="profile-page">
     <div class="account-information">
@@ -57,7 +60,7 @@
             </div>
             <div class="twit-intraction-buttons">
                 <button class="like">
-                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                     <p class="like-amount">215 اعجاب</p>
                 </button>
                 <button class="comment">
@@ -65,7 +68,7 @@
                     <p class="comment-amount">13 تعليق</p>
                 </button>
                 <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
             </div>
         </div>
         <div class="twit-container">
@@ -82,9 +85,9 @@
             <div class="twit-content">
                 <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
             </div>
-            <div class="twit-intraction-buttons">
+                        <div class="twit-intraction-buttons">
                 <button class="like">
-                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                     <p class="like-amount">215 اعجاب</p>
                 </button>
                 <button class="comment">
@@ -92,7 +95,7 @@
                     <p class="comment-amount">13 تعليق</p>
                 </button>
                 <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
             </div>
         </div>
         <div class="twit-container">
@@ -116,9 +119,9 @@ if(int i = 0 ; i < 10; i++)
     
 }</pre>
             </div>
-            <div class="twit-intraction-buttons">
+                        <div class="twit-intraction-buttons">
                 <button class="like">
-                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                     <p class="like-amount">215 اعجاب</p>
                 </button>
                 <button class="comment">
@@ -126,7 +129,7 @@ if(int i = 0 ; i < 10; i++)
                     <p class="comment-amount">13 تعليق</p>
                 </button>
                 <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
             </div>
         </div>
     </div>
@@ -178,11 +181,11 @@ if(int i = 0 ; i < 10; i++)
                     <h4>تغيير كلمة السر</h4>
                     <div>
                         <small>كلمة المرور الحالية</small>
-                        <input type="text" class="input" placeholder="اسم المستخدم" required>
+                        <input type="text" class="input" placeholder="كلمة المرور القديمة" required>
                     </div>
                     <div>
                         <small>كلمة المرور الجديدة</small>
-                        <input type="text" class="input" placeholder="اسم المستخدم" re>
+                        <input type="text" class="input" placeholder="كلمة المرور الجديدة" re>
                     </div>
                     <button class="btn btn-primary btn-hover">تغيير كلمة السر</button>
                 </div>

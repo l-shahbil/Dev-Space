@@ -1,11 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<script>
+    document.querySelector(".navigation > a:nth-child(1)").classList.add("active-bar");
+</script>
 
-@*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
 
 <div class="home-page">
                         
@@ -25,16 +24,24 @@
                     <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt="Profile"></div>
                     <textarea name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
                     <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود"></textarea>
+                    <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
                 </div>
                 <div class="action-buttons">
                     <div class="media-buttons">
-                        <button class="btn"><img src="~/lib/assites/Icons/image.svg" alt="">إضافة صورة</button>
-                        <button class="btn" onclick="showAndHide('code-box')"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة كود</a>
-                        <button class="btn"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة فديو</button>
+                        <div class="btn" onclick="openImageDailog()"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
+                        <div class="btn" onclick="showAndHide('code-box')"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة كود</div>
                     </div>  
                     <input type="submit" class="btn btn-primary" value="نشر">
                     <div class="btn btn-secondary cansle-btn" onclick="showAndHide('input-popup-shadow')" style="display: inline-block;">الغاء</div>
                 </div>
+            </div>
+        </div>
+        <div class="more-popup-shadow">
+            <div class="popup-more-option">
+                <button class="btn btn-secondary btn-hover">تعديل</button>
+                <button class="btn btn-secondary btn-hover">مشاركة</button>
+                <button class="btn btn-primary danger btn-hover">حذف المنشور</button>
+                <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
             </div>
         </div>
     </div>
@@ -58,7 +65,7 @@
         </div>
         <div class="twit-intraction-buttons">
             <button class="like">
-                <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                 <p class="like-amount">215 اعجاب</p>
             </button>
             <button class="comment">
@@ -66,27 +73,27 @@
                 <p class="comment-amount">13 تعليق</p>
             </button>
             <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-            <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
         </div>
     </div>
                         
     <div class="twit-container">
         <div class="twit-header">
-            <div class="account-info">
+            <a asp-controller="FrindProfile" asp-action="frindProfile" class="account-info">
                 <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
                 <div class="user-info">
                     <p class="account-name">عبدالله بن شحبل</p>
                     <small class="account-username">abud3l</small>
                 </div>
-            </div>
+            </a>
             <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
         </div>
-        <div class="twit-content">
+        <a asp-controller="PostComments" asp-action="postComments" class="twit-content">
             <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
-        </div>
+        </a>
         <div class="twit-intraction-buttons">
             <button class="like">
-                <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                 <p class="like-amount">215 اعجاب</p>
             </button>
             <button class="comment">
@@ -94,7 +101,7 @@
                 <p class="comment-amount">13 تعليق</p>
             </button>
             <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-            <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
         </div>
     </div>
 
@@ -121,7 +128,7 @@ if(int i = 0 ; i < 10; i++)
         </div>
         <div class="twit-intraction-buttons">
             <button class="like">
-                <div class="image-cntainer share"><img src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                 <p class="like-amount">215 اعجاب</p>
             </button>
             <button class="comment">
@@ -129,9 +136,7 @@ if(int i = 0 ; i < 10; i++)
                 <p class="comment-amount">13 تعليق</p>
             </button>
             <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-            <button class="image-cntainer bookmark"><img src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
         </div>
     </div>
 </div>
-
-

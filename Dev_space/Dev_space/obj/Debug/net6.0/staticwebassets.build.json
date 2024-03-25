@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8EV8TriCjbd6hEvJkXaFUXYQV7i6BskLx8hpicaprA4=",
+  "Hash": "6UaMIh84MVkiQLtClUeAjLDl6cn1HJzpCZH1/1lss2U=",
   "Source": "Dev_space",
   "BasePath": "_content/Dev_space",
   "Mode": "Default",
@@ -102,6 +102,23 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\js\\main.js",
+      "SourceId": "Dev_space",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\",
+      "BasePath": "_content/Dev_space",
+      "RelativePath": "js/main.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\main.js"
+    },
+    {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\js\\site.js",
       "SourceId": "Dev_space",
       "SourceType": "Discovered",
@@ -117,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\lib\\assites\\Icons\\arrow.svg",
+      "SourceId": "Dev_space",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\",
+      "BasePath": "_content/Dev_space",
+      "RelativePath": "lib/assites/Icons/arrow.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\assites\\Icons\\arrow.svg"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\lib\\assites\\Icons\\Bookmark.svg",
@@ -202,6 +236,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\assites\\Icons\\home.svg"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\lib\\assites\\Icons\\Hover-outline-bookmark.svg",
+      "SourceId": "Dev_space",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\",
+      "BasePath": "_content/Dev_space",
+      "RelativePath": "lib/assites/Icons/Hover-outline-bookmark.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\assites\\Icons\\Hover-outline-bookmark.svg"
+    },
+    {
+      "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\lib\\assites\\Icons\\Hover-outline-heart.svg",
+      "SourceId": "Dev_space",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\",
+      "BasePath": "_content/Dev_space",
+      "RelativePath": "lib/assites/Icons/Hover-outline-heart.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\assites\\Icons\\Hover-outline-heart.svg"
     },
     {
       "Identity": "C:\\Users\\LENOVO\\Desktop\\CSG1-Shahbil\\CSG1-Shahbil\\Dev_space\\Dev_space\\wwwroot\\lib\\assites\\Icons\\image.svg",
