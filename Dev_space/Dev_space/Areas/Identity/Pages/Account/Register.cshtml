@@ -1,0 +1,118 @@
+﻿@*@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+*@
+
+<div class="login-and-signup-page">
+    <h1 class="logo"><span>Dev</span>Space</h1>
+
+    <form class="registr-info-form">
+        <div class="form-header">
+            <h3>أنشاء حساب</h3>
+            <p>مرحبا بك، انشاء حسابك واستمتع بالتواصل  المبرمجين</p>
+        </div>
+        <div class="form-input-boxes">
+            <small>الاسم الاول</small>
+            <input type="text" placeholder="الاسم الاول" required>
+            <small>الاسم الثاني</small>
+            <input type="text" placeholder="الاسم الثاني" required>
+            <small>الجنس</small>
+            <div class="gender" style="display: flex; gap: 10px;">
+                <input type="radio" name="gender" value="" required>
+                <label style="margin-left: 24px;">ذكر</label>
+                <input type="radio" name="gender" value="female" required>
+                <label>انثى</label>
+            </div>
+            <small>تاريخ الميلاد</small>
+            <input type="date" required>
+            <small>الدولة</small>
+            <select name="" id="">
+                <option value="اليمن">اليمن</option>
+                <option value="السعودية">السعودية</option>
+                <option value="الإمارات">الإمارات</option>
+                <option value="قطر">قطر</option>
+                <option value="الأردن">الأردن</option>
+                <option value="الكويت">الكويت</option>
+                <option value="مصر">مصر</option>
+                <option value="السودان">السودان</option>
+                <option value="فلسطين">فلسطين</option>
+                <option value="عمان">عمان</option>
+                <option value="سوريا">سوريا</option>
+                <option value="لبنان">لبنان</option>
+                <option value="المغرب">المغرب</option>
+                <option value="تونس">تونس</option>
+                <option value="ليبيا">ليبيا</option>
+                <option value="العراق">العراق</option>
+            </select>
+            <small>البريد الاكتروني</small>
+            <input type="email" placeholder="البريد الاكتروني" required>
+            <button class="btn btn-primary btn-hover">دخول</button>
+            <p style="margin: 0 auto;">لديك حساب بالفعل؟ <span>تسجيل الدخول</span></p>
+        </div>
+    </form>
+
+</div>

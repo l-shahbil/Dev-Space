@@ -1,0 +1,195 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script>
+    document.querySelector(".navigation > a:nth-child(2)").classList.add("active-bar");
+</script>
+
+<div class="profile-page">
+    <div class="account-information">
+        <div class="image-container header-image">
+            <img src="~/lib/assites/images/header-image.jpg" alt="">
+        </div>
+        <div class="image-container profile-image">
+            <img src="~/lib/assites/images/Profile.png" alt="">
+        </div>
+        <div class="profile-account-info">
+            <div class="account-name-and-btn">
+                <div class="account-names">
+                    <h2 class="name">عبدالله بن شحبل</h2>
+                    <p class="user-name">abud3l</p>
+                </div>
+                <button class="btn btn-secondary btn-hover" onclick="showAndHide('edit-popup-shadow')">تعديل الملف الشخصي</button>
+            </div>
+            <p class="account-bio">
+                انا اسمي عبدالله بن شحبل طالب علوم حاسوب في جامعة حضرموت
+            </p>
+            <div class="social-accounts-btns">
+                <a href="#" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div></a>
+                <a href="" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div></a>
+                <a href="" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div></a>
+                <a href="" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div></a>
+            </div>
+            <div class="account-following-info">
+                <p class="following">1200 <span>متابِعا</span></p>
+                <p class="following">34 <span>متابَعا</span></p>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="account-twits">
+
+        <div class="twit-container">
+            <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">عبدالله بن شحبل</p>
+                        <small class="account-username">abud3l</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص <span>#العربي_هاشتاق</span> النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+                <div class="image-container twit-image">
+                    <img src="~/lib/assites/images/twitte-image.png" alt="">
+                </div>
+            </div>
+            <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="twit-container">
+            <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">عبدالله بن شحبل</p>
+                        <small class="account-username">abud3l</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+            </div>
+                        <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="twit-container">
+            <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">عبدالله بن شحبل</p>
+                        <small class="account-username">abud3l</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+                <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                <pre class="code" style="direction: ltr;">
+consle.log(fdsf)
+if(int i = 0 ; i < 10; i++)
+{
+    
+}</pre>
+            </div>
+                        <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-popup-shadow">
+        <form class="popup-edit">
+            <div class="edit-header">
+                <div>
+                    <div onclick="showAndHide('edit-popup-shadow')" style="cursor: pointer;" class="image-container"><img src="~/lib/assites/Icons/close-x-icone.svg" alt=""></div>
+                    <h2>تعديل الملف الشخصي</h2>
+                </div>
+                <button class="btn btn-primary btn-hover">حفظ</button>
+            </div>
+            <div class="edit-images">
+                <div class="image-container header-image">
+                    <img src="~/lib/assites/images/header-image.jpg" alt="">
+                </div>
+                <div class="image-container profile-image">
+                    <img src="~/lib/assites/images/Profile.png" alt="">
+                </div>
+            </div>
+            <div class="edit-other-info">
+                <div class="personal-info">
+                    <h4>المعلومات الشخصية</h4>
+                    <div>
+                        <small>الاسم</small>
+                        <div class="names-input-boxs">
+                            <input type="text" class="input" placeholder="الاسم الاول" required>
+                            <input type="text" class="input" placeholder="الاسم الاخير" required>
+                        </div>
+                    </div>
+                    <div>
+                        <small>اسم المستخدم</small>
+                        <input type="text" class="input" placeholder="اسم المستخدم" required>
+                    </div>
+                    <div>
+                        <small>النبذه الشخصية</small>
+                        <textarea cols="30" rows="5" placeholder="النبذه الشخصية" ></textarea>
+                    </div>
+                </div>
+                <div class="social-accounts-links">
+                    <h4>روابط البرامج الاخرى</h4>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div><input type="text" placeholder="هنا ضع الرابط"></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div><input type="text" placeholder="هنا ضع الرابط"></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div><input type="text" placeholder="هنا ضع الرابط"></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div><input type="text" placeholder="هنا ضع الرابط"></div>
+                </div>
+                <div class="change-password">
+                    <h4>تغيير كلمة السر</h4>
+                    <div>
+                        <small>كلمة المرور الحالية</small>
+                        <input type="text" class="input" placeholder="كلمة المرور القديمة" required>
+                    </div>
+                    <div>
+                        <small>كلمة المرور الجديدة</small>
+                        <input type="text" class="input" placeholder="كلمة المرور الجديدة" re>
+                    </div>
+                    <button class="btn btn-primary btn-hover">تغيير كلمة السر</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

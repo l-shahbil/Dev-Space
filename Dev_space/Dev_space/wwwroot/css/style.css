@@ -1,0 +1,718 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+:root {
+--waite-color: #FFFFFF;
+--background-color: #F9F9F9;
+--input-boxs: #F5F5F5;
+--main-color: #7B61FF;
+}
+
+* {
+font-family: "Tajawal", "sans-serif";
+padding: 0;
+margin: 0;
+border: none;
+outline: none;
+box-sizing: border-box;
+}
+
+body {
+direction: rtl;
+font-family: "Tajawal", sans-serif;
+}
+
+img {
+max-width: 100%;
+}
+
+.image-container {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+button {
+background-color: transparent;
+}
+
+a {
+text-decoration: none;
+color: black;
+}
+
+.my-container {
+    width: 1440px;
+    padding: 0 100px;
+    margin: 0 auto;
+}
+
+.btn {
+padding: 8px 32px;
+font-size: 14px;
+border-radius: 50px;
+height: 35px;
+cursor: pointer;
+}
+
+.btn-primary {
+color: var(--waite-color);
+background-color: var(--main-color);
+}
+
+.btn-primary.btn-hover:hover {
+background-color: #9782ff;
+}
+
+.btn-secondary {
+border: 0.5px solid black;
+}
+
+.btn-secondary.btn-hover:hover {
+background-color: #00000010;
+}
+
+.danger {
+background-color: red;
+color: var(--waite-color);
+}
+
+.danger.btn-hover:hover {
+background-color: #ff5151;
+}
+
+.active {
+display: block !important;
+}
+
+
+
+
+/* layout style ############################################################################### */
+.layout {
+width: 100%;
+background-color: var(--background-color);
+height: 100vh;
+overflow: hidden;
+}
+
+.layout .herder {
+width: 100%;
+background-color: var(--waite-color);
+padding: 16px 32px;
+display: flex;
+gap: 200px;
+border-bottom: 0.5px solid rgba(0, 0, 0, 0.14);
+}
+
+.layout .herder .logo {
+font-family: 'Times New Roman', Times, serif
+}
+
+.layout .herder .logo span {
+color: var(--main-color);
+font-family: 'Times New Roman', Times, serif
+}
+
+.layout .herder .search-box {
+width: 500px;
+background-color: var(--input-boxs);
+border-radius: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.layout .herder .search-input {
+padding: 10px 16px;
+background-color: transparent;
+height: 100%;
+width: 100%;
+}
+
+.layout .herder .image-container {
+padding: 3px 10px 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.layout .body {
+display: flex;
+justify-content: space-between;
+gap: 24px;
+}
+
+
+
+/* Rigth side ################################################################################# */
+.layout .body .right-sidebar {
+width: 350px;
+height: calc(100vh - 71px);
+background-color: var(--waite-color);
+}
+
+.layout .body .right-sidebar .profile {
+padding: 6px 10px;
+border: 0.5px solid #0000002f;
+border-radius: 10px;
+margin: 24px 10px;
+background-color: #f3f5ff60;
+}
+
+.layout .body .right-sidebar .profile .name {
+font-weight: 500;
+}
+
+.layout .body .right-sidebar .profile .user-name {
+opacity: 70%;
+}
+
+.layout .body .right-sidebar .navigation .nav {
+padding: 12px;
+display: flex;
+gap: 12px;
+}
+
+.layout .body .right-sidebar .navigation .nav.active-bar {
+font-weight: bold;
+;
+color: var(--main-color);
+}
+
+.layout .body .right-sidebar .navigation .nav.active img {
+fill: red;
+filter: grayscale(1);
+}
+
+.layout .body .right-sidebar .navigation .nav:hover {
+background-color: #f3f5ff84;
+}
+
+
+
+
+/* Center side ###############################################################################3 */
+.layout .body .center-side {
+width: 100%;
+padding-top: 16px;
+overflow-y: scroll;
+height: 100vh;
+padding-bottom: 100px;
+}
+
+.layout .body .center-side::-webkit-scrollbar {
+display: none;
+}
+
+/* think container ******************************* */
+.layout .body .center-side .think-container {
+background-color: var(--waite-color);
+padding: 24px;
+border-radius: 10px;
+}
+
+.layout .body .center-side .think-container p {
+font-size: 18px;
+font-weight: 500;
+}
+
+.layout .body .center-side .think-container .input-box {
+display: flex;
+gap: 12px;
+margin: 16px 0 0;
+}
+
+.layout .body .center-side .think-container .input-box .image-container {
+width: 50px;
+height: 50px;
+}
+
+.layout .body .center-side .think-container .input-box .image-container img {
+border: 0.5px solid #0000002f;
+border-radius: 50%;
+}
+
+.layout .body .center-side .think-container .input-box input {
+background-color: var(--input-boxs);
+padding: 1px 16px;
+height: 48px;
+width: 100%;
+border-radius: 10px;
+}
+
+/* input popup style ***************************** */
+.layout .body .center-side .input-popup-shadow, .more-popup-shadow {
+position: absolute;
+width: 100%;
+height: 100%;
+background-color: #00000048;
+z-index: 3;
+right: 0;
+top: 0;
+display: none;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input {
+background-color: var(--waite-color);
+padding: 24px;
+border-radius: 10px;
+width: 735px;
+top: 100px;
+right: 50%;
+transform: translateX(50%);
+position: absolute;
+z-index: 4;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input .popup-input-box {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+justify-content: end;
+margin: 16px 0 0;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input .image-container {
+width: 50px;
+height: 50px;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input .image-container img {
+border: 0.5px solid #0000002f;
+border-radius: 50%;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input-box textarea {
+background-color: var(--input-boxs);
+padding: 12px 16px;
+width: 90%;
+border-radius: 10px;
+resize: none;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input .action-buttons {
+margin-right: 56px;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input .media-buttons div {
+padding: 8px;
+display: inline-flex;
+gap: 6px;
+margin: 4px 0 10px;
+align-items: center;
+}
+
+.layout .body .center-side .input-popup-shadow .popup-input .media-buttons div:hover {
+background-color: var(--input-boxs);
+}
+
+#new-twit-image-container {
+width: 220px;
+height: 180px;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+display: none;
+}
+
+#new-twit-image-container img {
+border-radius: 0;
+width: 100%;
+}
+
+/* more option shadow */
+.layout .body .center-side .more-popup-shadow .popup-more-option {
+display: flex;
+flex-direction: column;
+gap: 10px;
+position: absolute;
+transform: translate(50%, -50%);
+padding: 24px;
+border-radius: 10px;
+z-index: 4;
+right: 50%;
+top: 50%;
+background-color: var(--waite-color);
+}
+
+.layout .body .center-side .more-popup-shadow .popup-more-option button {
+width: 250px;
+}
+
+
+
+
+/* twit style ***********************************/
+.layout .body .center-side .twit-container {
+background-color: var(--waite-color);
+padding: 24px;
+margin-top: 20px;
+border-radius: 10px;
+}
+
+.layout .body .center-side .twit-container .twit-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.layout .body .center-side .twit-container .twit-header .account-info {
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.layout .body .center-side .twit-container .twit-header .more-option-btn {
+cursor: pointer;
+}
+
+.layout .body .center-side .twit-container .twit-header .account-info .image-container {
+width: 50px;
+}
+
+.layout .body .center-side .twit-container .twit-header .account-info .image-container img {
+border: 0.5px solid #0000002f;
+border-radius: 50%;
+}
+
+.layout .body .center-side .twit-container .twit-header .account-info .user-info .account-name {
+font-size: 14px;
+display: block;
+margin-bottom: -5px;
+}
+
+.layout .body .center-side .twit-container .twit-header .account-info .user-info small {
+opacity: 60%;
+}
+
+.layout .body .center-side .twit-container .twit-content {
+margin-right: 56px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+position: relative;
+}
+
+.layout .body .center-side .twit-container .twit-content span {
+color: var(--main-color);
+font-weight: 500;
+}
+
+.layout .body .center-side .twit-container .twit-image {
+width: 100%;
+}
+
+.layout .body .center-side .twit-container .twit-intraction-buttons {
+display: flex;
+gap: 12px;
+margin-right: 56px;
+opacity: 80%;
+margin-top: 16px;
+}
+
+.layout .body .center-side .twit-container .twit-intraction-buttons .image-cntainer {
+width: 20px;
+}
+
+.layout .body .center-side .twit-container .twit-intraction-buttons .like, .twit-container .twit-intraction-buttons .comment {
+display: flex;
+gap: 8px;
+align-items: start;
+}
+
+.twit-container .twit-intraction-buttons * {
+cursor: pointer;
+}
+
+.code-box {
+display: none;
+}
+
+.layout .body .center-side .twit-container .code {
+background-color: var(--input-boxs);
+border-radius: 10px;
+font-weight: 500;
+border: 1px #0000002d solid;
+padding: 10px;
+}
+
+.layout .body .center-side .twit-container .twit-content .copy-code-btn {
+background-color: var(--waite-color);
+padding: 0px 16px;
+font-size: 12px;
+position: absolute;
+right: 6px;
+bottom: 6px;
+height: 24px;
+border: 0.5px solid #0000002d;
+}
+
+
+
+
+/* Profile page style */
+.profile-page {
+/* position: relative; */
+background-color: var(--waite-color);
+border-radius: 10px;
+overflow: hidden;
+}
+
+.header-image {
+height: 200px;
+overflow: hidden;
+}
+
+.profile-image {
+background-color: var(--waite-color);
+width: 120px;
+height: 120px;
+border-radius: 20px;
+position: relative;
+top: -70px;
+right: 40px;
+border: 0.5px solid #0000002d;
+}
+
+.profile-account-info {
+padding: 0 24px 24px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-top: -50px;
+}
+
+.profile-account-info .account-name-and-btn {
+display: flex;
+justify-content: space-between;
+}
+
+.profile-account-info .social-accounts-btns {
+display: flex;
+gap: 10px;
+}
+
+.profile-account-info .social-accounts-btns a {
+padding: 10px;
+border-radius: 10px;
+width: 40px;
+height: 40px;
+}
+
+.profile-account-info .social-accounts-btns a .image-cntainer {
+width: 40px;
+height: 40px;
+}
+
+.profile-account-info .account-following-info {
+display: flex;
+gap: 10px;
+font-weight: 600;
+}
+
+.profile-account-info .account-following-info span {
+font-weight: 400;
+}
+
+.account-twits {
+padding: 0 24px;
+}
+
+.account-twits .twit-container {
+border-top: 1px solid #0000002d;
+border-radius: 0px !important;
+margin: 0 !important;
+}
+
+/* frind profile  */
+.frind-profile-page {
+background-color: var(--waite-color);
+border-radius: 10px;
+}
+
+/* page header */
+.page-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: var(--waite-color);
+padding: 16px;
+width: 100%;
+position: sticky;
+z-index: 3;
+top: -18px;
+border-bottom: 1px solid #0000002d;
+gap: 10px;
+}
+
+/* comment page style ************************** */
+.twit-comment-container .comment-inptu-box {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-top: 16px;
+}
+
+.twit-comment-container .comment-inptu-box .comment-input {
+background-color: var(--input-boxs);
+border-radius: 10px;
+}
+
+.twit-comment-container .comment-inptu-box .image-container img {
+border: 0.5px solid #0000002d;
+border-radius: 50%;
+}
+
+.twit-comment-container .twit-container {
+border-top: 1px solid #0000002d;
+border-radius: 0 !important;
+}
+
+
+
+/* edit popup style ****************************************** */
+.profile-page .edit-popup-shadow {
+position: absolute;
+width: 100%;
+height: 100%;
+background-color: #00000048;
+z-index: 3;
+right: 0;
+top: 0;
+display: none;
+}
+
+.profile-page .edit-popup-shadow .popup-edit {
+background-color: var(--waite-color);
+border-radius: 10px;
+width: 735px;
+top: 50%;
+right: 50%;
+transform: translate(50%, -50%);
+position: absolute;
+z-index: 4;
+overflow: scroll;
+height: 90%;
+}
+
+.profile-page .edit-popup-shadow .popup-edit::-webkit-scrollbar {
+display: none;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-header {
+position: sticky;
+z-index: 5;
+display: flex;
+justify-content: space-between;
+padding: 16px 24px;
+top: -1px;
+width: 100%;
+background-color: var(--waite-color);
+border-bottom: 1px solid #0000002d;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-header div {
+display: flex;
+gap: 16px;
+align-items: center;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .personal-info {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-top: -60px;
+padding: 24px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .personal-info div {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .personal-info div .names-input-boxs {
+display: flex;
+flex-direction: row;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info input, .personal-info textarea, .comment-input {
+background-color: var(--input-boxs);
+border-radius: 10px;
+padding: 10px;
+width: 100%;
+resize: none;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .social-accounts-links {
+padding: 24px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .social-accounts-links div {
+display: flex;
+gap: 10px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .social-accounts-links div .image-cntainer {
+border: 1px solid #0000002d;
+padding: 10px;
+border-radius: 10px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .change-password {
+display: flex;
+flex-direction: column;
+gap: 16px;
+padding: 24px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .change-password div {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .change-password button {
+align-self: self-start;
+}
+
+
+/* Left side bar #################################################################################*/
+.layout .body .left-sidebar {
+background-color: var(--waite-color);
+width: 350px;
+height: calc(100vh - 71px);
+padding: 16px;
+}
+
+.layout .body .left-sidebar .hashtags .you-follow {
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.layout .body .left-sidebar .hashtags .you-follow h3 {
+margin-bottom: 6px
+}
+
+.layout .body .left-sidebar .hashtags .for-you {
+margin-top: 16px;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.layout .body .left-sidebar .hastag .hashtag-name {
+font-size: 14px;
+font-weight: 500;
+display: block;
+}
+
+.layout .body .left-sidebar .hastag .hashtag-number {
+font-size: 12px;
+display: block;
+}
