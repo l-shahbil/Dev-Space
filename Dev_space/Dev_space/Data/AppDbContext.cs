@@ -1,9 +1,11 @@
 ﻿using Dev_space.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Dev_space.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext:IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> option):base(option)
         {
