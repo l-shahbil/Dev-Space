@@ -1,4 +1,16 @@
-﻿function showAndHide(eleClass) {
+﻿const navItems = document.querySelectorAll(".nav");
+// let a = document.createElement("div");
+
+document.addEventListener("click", (ele) => {
+    if (ele.target.className === "nav") {
+        for (let i = 0; i < navItems.length; i++) {
+            navItems[i].classList.remove("active-bar");
+        }
+        ele.target.classList.add("active-bar");
+    }
+});
+
+function showAndHide(eleClass) {
     let element;
     element = document.querySelector(`.${eleClass}`);
     element.classList.toggle("active");
@@ -28,6 +40,33 @@ function changeText(element) {
         element.className = "btn btn-primary btn-hover";
         element.textContent = "متابعة";
     }
+}
+
+function changeProfileImage(imageClass) {
+    console.log("I am here");
+    console.log(imageClass)
+    let image = document.querySelector(`.${imageClass}`);
+    console.log(image);
+    var input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*"; // Accept only image files
+
+    // Trigger the file selection dialog when clicked
+    input.click();
+
+    // Listen for changes in the selected file
+    input.addEventListener("change", function () {
+        var file = input.files[0];
+        if (file) {
+            // You can use FileReader to read the file
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                // Do something with the image data, for example:
+                image.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 }
 
 function openImageDailog() {
@@ -73,11 +112,11 @@ function openImageDailog() {
 function changeStatusToHover(icone) {
     if (icone.src.includes("heart")) {
         if (icone.src.includes("Hover"))
-            icone.src = "/lib/assites/Icons/outline-heart.svg";
-        else icone.src = "/lib/assites/Icons/Hover-outline-heart.svg";
+            icone.src = "assites/Icons/outline-heart.svg";
+        else icone.src = "assites/Icons/Hover-outline-heart.svg";
     } else {
         if (icone.src.includes("Hover"))
-            icone.src = "/lib/assites/Icons/outline-bookmark.svg";
-        else icone.src = "/lib/assites/Icons/Hover-outline-bookmark.svg";
+            icone.src = "assites/Icons/outline-bookmark.svg";
+        else icone.src = "assites/Icons/Hover-outline-bookmark.svg";
     }
 }

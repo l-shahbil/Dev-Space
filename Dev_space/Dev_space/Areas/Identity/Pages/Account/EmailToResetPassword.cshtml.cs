@@ -14,11 +14,11 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Dev_space.Areas.Identity.Pages.Account
 {
-    public class ResetPasswordModel : PageModel
+    public class EmailToResetPassword : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ResetPasswordModel(UserManager<IdentityUser> userManager)
+        public EmailToResetPassword(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
         }

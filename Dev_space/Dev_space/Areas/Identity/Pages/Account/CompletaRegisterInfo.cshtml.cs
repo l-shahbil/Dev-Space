@@ -21,7 +21,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Dev_space.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public class CompleraRegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -30,7 +30,7 @@ namespace Dev_space.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public CompleraRegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
