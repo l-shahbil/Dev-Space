@@ -271,3 +271,5 @@ D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space\bin\Debug\net6.0\runtimes\win\lib\
 D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space\obj\Debug\net6.0\Dev_space.MvcApplicationPartsAssemblyInfo.cs
 D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space\obj\Debug\net6.0\Dev_space.csproj.CopyComplete
+D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space\obj\Debug\net6.0\Dev_space.Resources.ResourceData.resources
+D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space\obj\Debug\net6.0\Dev_space.csproj.GenerateResource.cache

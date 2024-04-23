@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Dev_space.Models.AccountViewModels;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dev_space.Models
@@ -6,13 +7,12 @@ namespace Dev_space.Models
     public class Friend
     {
         [Key]
-        public int Id { get; set; }
-        public int IdFriend { get; set; }
+        public string Id { get; set; }
+        public string IdFriend { get; set; }
 
         //relationships
-        [ForeignKey("Account")]
-        public int IdAccount { get; set;}
-        public Account account { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser? User { get; set; }
 
     }
 }

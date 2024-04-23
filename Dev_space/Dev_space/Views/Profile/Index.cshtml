@@ -1,0 +1,261 @@
+﻿@inject UserManager<ApplicationUser> userManger
+@model RegisterVeiwModel
+@{
+
+}
+<script>
+    document.querySelector(".navigation > a:nth-child(2)").classList.add("active-bar");
+</script>
+
+<div class="profile-page">
+    <div class="account-information">
+        <div class="image-container header-image">
+            <img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="">
+        </div>
+        <div class="image-container profile-image">
+            <img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)"  alt="">
+        </div>
+        <div class="profile-account-info">
+            <div class="account-name-and-btn">
+                <div class="account-names">
+                    <h2 class="name">@((await userManger.GetUserAsync(User)).Name)</h2>
+                    <p class="user-name">@((await userManger.GetUserAsync(User)).UserName)</p>
+                </div>
+                <button class="btn btn-secondary btn-hover" onclick="showAndHide('edit-popup-shadow')">تعديل الملف الشخصي</button>
+            </div>
+            <p class="account-bio">
+                @((await userManger.GetUserAsync(User)).Description)
+            </p>
+            <div class="social-accounts-btns">
+                @if(ViewBag.MyLink != null)
+                {      
+                    foreach (var item in ViewBag.MyLink)
+                    {
+                        if (item.Type == 0 && item.URL != string.Empty)
+                        {
+                            
+                            <a id="linkTwitter" target="_blank" href="@item.URL" class="btn-secondary btn-hover" value><div class="image-container"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div></a>
+                            
+                        }
+                        else if(item.Type==1 && item.URL != string.Empty){
+                            <a id="linkGithub" target="_blank" href="@item.URL" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div></a>
+                        }
+                        else if(item.Type == 2 && item.URL != string.Empty){
+                            <a id="linkBehance" target="_blank" href="@item.URL" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div></a>
+                        
+                        }
+                        else if(item.Type == 3 && item.URL != string.Empty){
+                        
+                            <a id="linkInstgram" target="_blank" href="@item.URL" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div></a>
+                        }
+            
+                    }
+                }
+                </div>
+            <div class="account-following-info">
+                <p class="following">1200 <span>متابِعا</span></p>
+                <p class="following">34 <span>متابَعا</span></p>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="account-twits">
+
+        <div class="twit-container">
+            <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">عبدالله بن شحبل</p>
+                        <small class="account-username">abud3l</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص <span>#العربي_هاشتاق</span> النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+                <div class="image-container twit-image">
+                    <img src="~/lib/assites/images/twitte-image.png" alt="">
+                </div>
+            </div>
+            <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="twit-container">
+            <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">عبدالله بن شحبل</p>
+                        <small class="account-username">abud3l</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+            </div>
+                        <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="twit-container">
+            <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">عبدالله بن شحبل</p>
+                        <small class="account-username">abud3l</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+                <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                <pre class="code" style="direction: ltr;">
+                    consle.log(fdsf)
+                    if(int i = 0 ; i < 10; i++)
+                    {
+    
+                    }</pre>
+            </div>
+                        <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-popup-shadow">
+        <form class="popup-edit" method="post" enctype="multipart/form-data" asp-action="UpdateUserData">
+            <input asp-for="ChangeUserData.Id"  value="@((await userManger.GetUserAsync(User)).Id)" hidden/>
+            <div class="edit-header">
+                <div>
+                    <div onclick="showAndHide('edit-popup-shadow')" style="cursor: pointer;" class="image-container"><img src="~/lib/assites/Icons/close-x-icone.svg" alt=""></div>
+                    <h2>تعديل الملف الشخصي</h2>
+                </div>
+                <button class="btn btn-primary btn-hover">حفظ</button>
+            </div>
+            <div class="edit-images">
+<<<<<<< HEAD:Dev_space/Dev_space/Views/Profile/Index.cshtml
+                <div class="image-container header-image">
+                    <img id="imgCover" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="">
+                    <input asp-for="ChangeUserData.ImgCover" type="file" onchange="loadFile(event,'imgCover')" placeholder="click here"/>
+                </div>
+                <div class="image-container profile-image">
+                    <img id="imgProfile" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="">
+                    <input asp-for="ChangeUserData.ImgProfile" type="file" onchange="loadFile(event,'imgProfile')" placeholder="click here" />
+=======
+                <div class="image-container header-image" onclick="changeProfileImage('image-1')">
+                    <img class="image-1" src="~/lib/assites/images/header-image.jpg" alt="">
+                </div>
+                <div class="image-container profile-image" onclick="changeProfileImage('image-2')">
+                    <img class="image-2" src="~/lib/assites/images/Profile.png" alt="">
+>>>>>>> 610d461d4ab4a4357a9c4cc281fd263c7e120b79:Dev_space/Dev_space/Views/Profile/profile.cshtml
+                </div>
+            </div>
+            <div class="edit-other-info">
+                <div class="personal-info">
+                    <h4>المعلومات الشخصية</h4>
+                    <div>
+                        <small>الاسم</small>
+                        <div class="names-input-boxs">
+                            <input asp-for="ChangeUserData.Name" type="text" class="input" placeholder="الاسم" required value="@((await userManger.GetUserAsync(User)).Name)">
+                        </div>
+                    </div>
+                    <div>
+                        <small>اسم المستخدم</small>
+                        <input asp-for="ChangeUserData.UserName" type="text" class="input" placeholder="اسم المستخدم" value="@((await userManger.GetUserAsync(User)).UserName)">
+                    </div>
+                    <div>
+                        
+                        <small>النبذه الشخصية</small>
+                        <textarea asp-for="ChangeUserData.Discription" cols="30" rows="5" placeholder="النبذه الشخصية"></textarea>
+                    </div>
+                </div>
+                <div class="social-accounts-links">
+                    <h4>روابط البرامج الاخرى</h4>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div><input asp-for="ChangeUserData.LinkInstagram" type="text" placeholder="هنا ضع الرابط" value="" id="inputLinkInstgram"/></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div><input asp-for="ChangeUserData.LinkTwitter" type="text" placeholder="هنا ضع الرابط" value="" id="inputLinkTwitter"/></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div><input asp-for="ChangeUserData.LinkBehance" type="text" placeholder="هنا ضع الرابط" id="inputLinkBehance"/></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div><input asp-for="ChangeUserData.LinkGithub" type="text" placeholder="هنا ضع الرابط" id="inputLinkGithub"/></div>
+                </div>
+        </form>
+        <form asp-action="ChangePasswrod" method="post">
+                <div class="change-password">
+                    <h4>تغيير كلمة السر</h4>
+                    <div>
+                        <input asp-for="ChangePassword.id" value="@((await userManger.GetUserAsync(User)).Id)" hidden/>
+                        <small>كلمة المرور الجديدة</small>
+                        <input asp-for="ChangePassword.NewPassword" type="text" class="input" placeholder="كلمة المرور الجديدة" >
+                        <span asp-validation-for="ChangePassword.NewPassword" class="danger"></span>
+                    </div>
+                    <div>
+                        <small>تأكيد كلمة المرور</small>
+                        <input asp-for="ChangePassword.ComparePassword" type="text" class="input" placeholder="تأكيد كلمة المرور" >
+                        <span asp-validation-for="ChangePassword.ComparePassword" class="danger"></span>
+                    </div>
+                    <button class="btn btn-primary btn-hover">تغيير كلمة المرور</button>
+                </div>
+        </form>
+            </div>
+        </div>
+    
+<script>
+    var linkTwitter = document.getElementById('linkTwitter');
+    var linkBehance = document.getElementById('linkBehance');
+    var linkInstgram = document.getElementById('linkInstgram');
+    var linkGithub =document.getElementById('linkGithub');
+    if(linkTwitter){
+        document.getElementById('inputLinkTwitter').value =linkTwitter.href;
+    }
+    if(linkBehance){
+        document.getElementById('inputLinkBehance').value=linkBehance.href;
+    }
+    if(linkInstgram){
+        document.getElementById('inputLinkInstgram').value =linkInstgram.href;
+    }
+    if(linkGithub){
+         document.getElementById('inputLinkGithub').value = linkGithub.href;
+    }
+    var loadFile = function(event,elementID){
+            var reader= new FileReader();
+            reader.onload = function(){
+                var MyImg = document.getElementById(elementID);
+                MyImg.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0])
+        }
+</script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+  
