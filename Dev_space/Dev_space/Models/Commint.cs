@@ -1,5 +1,4 @@
-﻿using Dev_space.Models.AccountViewModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dev_space.Models
@@ -7,17 +6,19 @@ namespace Dev_space.Models
     public class Commint
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Text { get; set; } = string.Empty;
         public DateTime Date { get; set; } = DateTime.Now;
 
         //Relationships
-        [ForeignKey("UserId")]
-        public ApplicationUser? User { get; set; }
+        [ForeignKey("Account")]
+        public int IdAccount { get; set; }
+        public Account? account { get; set; }
 
 
 
-        [ForeignKey("PostID")]
+        [ForeignKey("Post")]
+        public int IdPost { get; set; }
         public Post? post { get; set; }
     }
 }

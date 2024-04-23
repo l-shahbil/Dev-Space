@@ -1,8 +1,4 @@
 using Dev_space.Data;
-using Dev_space.Models.AccountViewModels;
-using Dev_space.Repository;
-using Dev_space.Repository.Base;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,19 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
-{
-    option.Password.RequireUppercase = false;
-    option.Password.RequireLowercase = false;
-    option.Password.RequiredUniqueChars = 0;
-    option.Password.RequiredLength = 5;
-    option.Password.RequireDigit = false;
-    option.Password.RequireNonAlphanumeric = false;
-}).AddEntityFrameworkStores<AppDbContext>();
-builder.Services.ConfigureApplicationCookie(option =>
-    option.LoginPath = "/Accounts/Login"
-);
-builder.Services.AddTransient(typeof(IRepository<>), typeof(MainRepository<>));
+
 
 var app = builder.Build();
 
@@ -39,7 +23,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
