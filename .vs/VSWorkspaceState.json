@@ -3,8 +3,13 @@
     "",
     "\\Dev_space",
     "\\Dev_space\\Dev_space",
-    "\\Dev_space\\Dev_space\\Data"
+    "\\Dev_space\\Dev_space\\Controllers",
+    "\\Dev_space\\Dev_space\\Data",
+    "\\Dev_space\\Dev_space\\Models",
+    "\\Dev_space\\Dev_space\\Views",
+    "\\Dev_space\\Dev_space\\Views\\Accounts",
+    "\\Dev_space\\Dev_space\\Views\\Profile"
   ],
-  "SelectedNode": "\\Dev_space\\Dev_space\\Data\\AppDbContext.cs",
+  "SelectedNode": "\\Dev_space\\Dev_space\\Views\\Profile\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

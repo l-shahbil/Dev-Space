@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Dev_space.Models.AccountViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dev_space.Models
 {
@@ -10,7 +11,7 @@ namespace Dev_space.Models
         public string Name { get; set; }=string.Empty;
 
         //relationship
-        public ICollection<Account> Accounts { get; set; }
+        public ICollection<ApplicationUser> User { get; set; }
         public ICollection<Post> Posts { get; set; }
 
     }
