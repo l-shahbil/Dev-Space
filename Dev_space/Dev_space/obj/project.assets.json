@@ -10087,7 +10087,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.0",
-      "Microsoft.EntityFrameworkCore >= 6.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.0",
@@ -10120,10 +10119,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "D:\\library asp.net core\\.nuget\\packages": {},
         "D:\\library asp.net core\\.nuget\\packages\\AspNetCore.Identity.EntityFrameworkCoreew folder": {},
         "D:\\library asp.net core\\.nuget\\packages\\microsoft.aspnetcore.identity.ui": {},
-        "D:\\library asp.net core\\.nuget\\packages\\microsoft.entityframeworkcore": {},
-        "D:\\library asp.net core\\.nuget\\packages\\microsoft.entityframeworkcore.relational": {},
         "D:\\library asp.net core\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver": {},
         "D:\\library asp.net core\\.nuget\\packages\\microsoft.entityframeworkcore.tools": {},
         "D:\\library asp.net core\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design": {},
@@ -10147,10 +10145,6 @@
         "targetAlias": "net6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[6.0.0, )"
-          },
-          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.0, )"
           },
