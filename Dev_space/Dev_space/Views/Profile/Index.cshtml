@@ -165,6 +165,7 @@
                 <button class="btn btn-primary btn-hover">حفظ</button>
             </div>
             <div class="edit-images">
+<<<<<<< HEAD:Dev_space/Dev_space/Views/Profile/Index.cshtml
                 <div class="image-container header-image">
                     <img id="imgCover" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="">
                     <input asp-for="ChangeUserData.ImgCover" type="file" onchange="loadFile(event,'imgCover')" placeholder="click here"/>
@@ -172,6 +173,13 @@
                 <div class="image-container profile-image">
                     <img id="imgProfile" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="">
                     <input asp-for="ChangeUserData.ImgProfile" type="file" onchange="loadFile(event,'imgProfile')" placeholder="click here" />
+=======
+                <div class="image-container header-image" onclick="changeProfileImage('image-1')">
+                    <img class="image-1" src="~/lib/assites/images/header-image.jpg" alt="">
+                </div>
+                <div class="image-container profile-image" onclick="changeProfileImage('image-2')">
+                    <img class="image-2" src="~/lib/assites/images/Profile.png" alt="">
+>>>>>>> 610d461d4ab4a4357a9c4cc281fd263c7e120b79:Dev_space/Dev_space/Views/Profile/profile.cshtml
                 </div>
             </div>
             <div class="edit-other-info">

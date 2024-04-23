@@ -411,7 +411,7 @@ opacity: 80%;
 margin-top: 16px;
 }
 
-.layout .body .center-side .twit-container .twit-intraction-buttons .image-cntainer {
+.layout .body .center-side .twit-container .twit-intraction-buttons .image-container {
 width: 20px;
 }
 
@@ -494,13 +494,12 @@ gap: 10px;
 }
 
 .profile-account-info .social-accounts-btns a {
-padding: 10px;
 border-radius: 10px;
 width: 40px;
 height: 40px;
 }
 
-.profile-account-info .social-accounts-btns a .image-cntainer {
+.profile-account-info .social-accounts-btns a .image-container {
 width: 40px;
 height: 40px;
 }
@@ -525,11 +524,13 @@ border-radius: 0px !important;
 margin: 0 !important;
 }
 
+
 /* frind profile  */
 .frind-profile-page {
 background-color: var(--waite-color);
 border-radius: 10px;
 }
+
 
 /* page header */
 .page-header {
@@ -545,6 +546,7 @@ top: -18px;
 border-bottom: 1px solid #0000002d;
 gap: 10px;
 }
+
 
 /* comment page style ************************** */
 .twit-comment-container .comment-inptu-box {
@@ -657,7 +659,7 @@ display: flex;
 gap: 10px;
 }
 
-.profile-page .edit-popup-shadow .popup-edit .edit-other-info .social-accounts-links div .image-cntainer {
+.profile-page .edit-popup-shadow .popup-edit .edit-other-info .social-accounts-links div .image-container {
 border: 1px solid #0000002d;
 padding: 10px;
 border-radius: 10px;
@@ -678,6 +680,144 @@ gap: 10px;
 
 .profile-page .edit-popup-shadow .popup-edit .edit-other-info .change-password button {
 align-self: self-start;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .image-container {
+    position: relative;
+    cursor: pointer;
+    border: 1px solid white;
+    overflow: hidden;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .image-container img {
+    width: 100%;
+}
+
+.profile-page .edit-popup-shadow .popup-edit .edit-images .image-container::before {
+    content: "Click to change image";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #00000091;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+
+/*Notification page style *************************** */
+
+.notification-page .notifications-container {
+    background-color: var(--waite-color);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.notification-page .notficate-like {
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.notification-page .notficate-like .pepole-images {
+    display: flex;
+    gap: 2px;
+}
+
+.notification-page .notficate-like .image-container {
+    width: 50px;
+    height: 50px;
+}
+
+.notification-page .notficate-like .pepole-images .image-container img {
+    width: 100%;
+    border: 1px solid #0000002d;
+    border-radius: 50%;
+}
+
+.notification-page .notficate-like .image-container.like-image img {
+    width: 60%;
+}
+
+.notification-page .notficate-like p {
+    margin-top: 10px;
+}
+
+.notification-page .notification-comment .twit-container {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.notification-page .notifications-container .notification-comment:not(:first-child), .notficate-like:not(:first-child) {
+    border-radius: 0px;
+    border-top: 1px solid #0000002d;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+
+/* login and signup page sytle ************************************* */
+.login-and-signup-page {
+    text-align: center;
+    background-color: var(--waite-color);
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-and-signup-page .logo {
+    font-family: 'Times New Roman', Times, serif
+}
+
+.login-and-signup-page .logo span {
+    color: var(--main-color);
+    font-family: 'Times New Roman', Times, serif
+}
+
+.form-header {
+    margin-top: 32px;
+}
+
+.form-input-boxes {
+    width: 300px;
+    margin: 24px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.form-input-boxes input, select {
+    background-color: var(--input-boxs);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.form-input-boxes small {
+    font-size: 12px;
+    opacity: 70%;
+}
+
+.form-input-boxes button {
+    width: 100%;
+}
+
+.form-input-boxes p, .form-input-boxes a {
+    font-size: 14px;
+}
+
+.form-input-boxes span {
+    color: var(--main-color);
+    font-weight: bold;
 }
 
 
