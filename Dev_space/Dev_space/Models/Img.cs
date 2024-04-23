@@ -6,14 +6,13 @@ namespace Dev_space.Models
     public class Img
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string? pathImg { get; set; }
         [NotMapped]
         public IFormFile img { get; set; }
 
         //Relationships
-        [ForeignKey("Post")]
-        public int IdPost { get; set; }
+        [ForeignKey("PostID")]
         public Post? post { get; set; }
     }
 }

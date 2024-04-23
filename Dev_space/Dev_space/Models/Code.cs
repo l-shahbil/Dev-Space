@@ -6,12 +6,11 @@ namespace Dev_space.Models
     public class Code
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string CodeText { get; set; } = string.Empty;
 
         //Relationships
-        [ForeignKey("Post")]
-        public int IdPost { get; set; }
+        [ForeignKey("PostID")]
         public Post? post { get; set; }
     }
 }

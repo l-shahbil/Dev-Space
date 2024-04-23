@@ -2,6 +2,10 @@
     let element;
     element = document.querySelector(`.${eleClass}`);
     element.classList.toggle("active");
+
+    
+   
+   
 }
 
 function copyCode(eleClass) {

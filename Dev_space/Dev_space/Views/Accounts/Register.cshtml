@@ -1,0 +1,89 @@
+﻿@model RegisterVeiwModel
+@{
+    Layout = "";
+}
+<div class="login-and-signup-page">
+    <h1 class="logo"><span>Dev</span>Space</h1>
+
+    <form  method="post" enctype="multipart/form-data">
+        <div class="form-header">
+            <h3>أنشاء حساب</h3>
+            <p>مرحبا بك، انشاء حسابك واستمتع بالتواصل مع المبرمجين</p>
+        </div>
+        <div class="form-input-boxes">
+            @if (TempData["errorUser"] != null)
+            {
+                <span class="danger">اسم المستخدم موجود سابقاً</span>
+            }
+            <div class="form-group">
+                 <small>الاسم</small>
+                 <input asp-for="NewRegister.Name" type="text" placeholder="الاسم" required>
+                 <span asp-validation-for=NewRegister.Name  class="danger"></span>
+            </div>
+           <div class="form-group">
+               <small>الجنس</small>
+                <div class="gender" style="display: flex; gap: 10px;">
+                    <input asp-for="NewRegister.gender" type="radio" value="male" required>
+                    <label style="margin-left: 24px;">ذكر</label>
+                    <input asp-for="NewRegister.gender" type="radio" value="female" required>
+                    <label>انثى</label>
+                    <span asp-validation-for="NewRegister.gender" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <small>تاريخ الميلاد</small>
+                <input asp-for="NewRegister.BirthDate" type="date" required>
+                <span asp-validation-for="NewRegister.BirthDate"  class="danger"></span>
+            </div>
+            <div class="form-group">
+                <small>الدولة</small>
+                <select  asp-for="NewRegister.Country" >
+                    <option value="اليمن">اليمن</option>
+                    <option value="السعودية">السعودية</option>
+                    <option value="الإمارات">الإمارات</option>
+                    <option value="قطر">قطر</option>
+                    <option value="الأردن">الأردن</option>
+                    <option value="الكويت">الكويت</option>
+                    <option value="مصر">مصر</option>
+                    <option value="السودان">السودان</option>
+                    <option value="فلسطين">فلسطين</option>
+                    <option value="عمان">عمان</option>
+                    <option value="سوريا">سوريا</option>
+                    <option value="لبنان">لبنان</option>
+                    <option value="المغرب">المغرب</option>
+                    <option value="تونس">تونس</option>
+                    <option value="ليبيا">ليبيا</option>
+                    <option value="العراق">العراق</option>
+                </select>
+                <span asp-validation-for="NewRegister.Country"  class="danger"></span>
+            </div>
+            <div class="form-group">
+                <small>البريد الاكتروني</small>
+                <input asp-for="NewRegister.Email" type="email" placeholder="البريد الاكتروني" required>
+                <span asp-validation-for="NewRegister.Email"  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <small>اسم المستخدم</small>
+                <input asp-for="NewRegister.UserName" type="text" placeholder="اسم المستخدم" required>
+                <span asp-validation-for="NewRegister.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <small>كلمة المرور</small>
+                <input asp-for="NewRegister.Password" type="password" placeholder="كلمة المرور" required>
+                <span class="text-danger" asp-validation-for="NewRegister.Password"></span>
+            </div>
+            <div class="form-group">
+                <small>تأكيد كلمة المرور</small>
+                <input asp-for="NewRegister.ComparePassword" type="password" placeholder="تأكيد كلمة المرور" required>  
+                 <span class="text-danger" asp-validation-for="NewRegister.ComparePassword"></span>
+            </div>
+
+            <button class="btn btn-primary btn-hover">دخول</button>
+            <p style="margin: 0 auto;">لديك حساب بالفعل؟ <a href="Login"><span>تسجيل الدخول</span></a></p>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
