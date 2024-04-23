@@ -15,6 +15,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Dev-Space\CSG1-Shahbil\Dev_space\Dev_space
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/CompletaRegisterInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQ29tcGxldGFSZWdpc3RlckluZm8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/EmailToResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRW1haWxUb1Jlc2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/RegisterConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVnaXN0ZXJDb25maXJtYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVzZXRQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Accounts/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVzZXRQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Bookmarks/bookmarks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va21hcmtzXGJvb2ttYXJrcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/FrindProfile/frindProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJpbmRQcm9maWxlXGZyaW5kUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Hashtag/hashtag.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFzaHRhZ1xoYXNodGFnLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -23,8 +63,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Notification/notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXG5vdGlmaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/PostComments/PostComments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdENvbW1lbnRzXFBvc3RDb21tZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Shared/_ValidationScriptsPartial.cshtml]
