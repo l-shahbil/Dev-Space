@@ -1,4 +1,4 @@
-﻿@inject UserManager<ApplicationUser> userManger
+@inject UserManager<ApplicationUser> userManger
 @model Post
 @{
     ViewData["Title"] = "Home Page";
@@ -19,6 +19,7 @@
         </div>
                             
         <div class="input-popup-shadow">
+
                 <form asp-action="Post" enctype="multipart/form-data" method="post">
                     <div class="popup-input">
                         <p>في ماذا تفكر؟</p>
@@ -28,6 +29,7 @@
                             <div class="image-container"><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile"></div>
                             <textarea asp-for="Text" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
                             <textarea asp-for="Code" class="code-box"rows="5" placeholder="اكتب الكود"></textarea>
+                            <input type="file" class="popup-input-image" accept="image/*" style="display: none;">
                             <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
                         </div>
                         <div class="action-buttons">
@@ -41,7 +43,6 @@
                     </div>
                 </form>
         </div>
-      
     </div>
 
     <div class="twit-container">

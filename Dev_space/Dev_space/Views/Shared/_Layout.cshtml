@@ -10,7 +10,7 @@
 
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-    <link rel="stylesheet" href="~/Dev_space.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="~/css/style.css">
 </head>
@@ -30,15 +30,8 @@
             <div class="body">
 
                 <div class="right-sidebar">
-                    @if (singManger.IsSignedIn(User))
-                    {
-                       <div class="profile" href="#">
-                            <p class="name">@((await userManger.GetUserAsync(User)).Name)</p>
-                            <p class="user-name">@((await userManger.GetUserAsync(User)).UserName)</p>
-                       </div> 
-                    }
                     
-                    <div class="navigation">
+                    <div class="navigation" style="margin-top:40px">
                         <a class="nav " asp-controller="Home" asp-action="Index" > <img src="~/lib/assites/Icons/home.svg" alt=""> الرئيسية</a>
                         <a class="nav" asp-controller="Profile" asp-action="Index" > <img src="~/lib/assites/Icons/profile.svg" alt=""> الملف الشخصي</a>
                         <a class="nav" asp-controller="Notification" asp-action="notification" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>
@@ -50,6 +43,7 @@
                 <div class="center-side">
                     <main role="main" style="height:100%">
                     @RenderBody()
+
                     </main>  
                     <div class="more-popup-shadow">
                                     <div class="popup-more-option">
@@ -60,37 +54,29 @@
                 </div>
 
                 <div class="left-sidebar">
-                    <div class="hashtags">
-                        <div class="you-follow">
-                            <h3>تتابع</h3>
-                            <div class="hastag">
-                                <a asp-controller="Hashtag" asp-action="hashtag" class="hashtag-name">#الذكاء_الاصطناعي</a>
-                                <small class="hashtag-number">1,301 منشور</small>
-                            </div>
-                            <div class="hastag">
-                                <p class="hashtag-name">#بايثون</p>
-                                <small class="hashtag-number">1,301 منشور</small>
-                            </div>
-                            <div class="hastag">
-                                <p class="hashtag-name">#برمجة</p>
-                                <small class="hashtag-number">1,301 منشور</small>
-                            </div>
-                            <div class="hastag">
-                                <p class="hashtag-name">#حافاسكربت</p>
-                                <small class="hashtag-number">1,301 منشور</small>
+                    <div class="profile" href="#">
+                        <div class="short-profile-background" style="height: 80px; margin-bottom: -16px; width: 200px;"></div>
+                        <div class="flex" style="gap: 10px;align-items: end; justify-content: center;">
+
+                            <div class="image-container" style="width: 60px;"><img style="border-radius: 50%; border: 1px solid #00000026;" src="assites/images/Profile.png" alt=""></div>
+                            <div class="short-profile-info">
+                                @if (singManger.IsSignedIn(User))
+                                {
+                                    <p class="name">@((await userManger.GetUserAsync(User)).Name)</p>
+                                    <p class="user-name">@((await userManger.GetUserAsync(User)).UserName)</p>
+                                }
                             </div>
                         </div>
-                        <div class="for-you">
-                            <h3>لك</h3>
-                            <div class="hastag">
-                                <p class="hashtag-name">#حي_بي_تي</p>
-                                <small class="hashtag-number">1,301 منشور</small>
+                            <div class="flex" style="justify-content: center; gap: 20px; margin-top: 10px; align-items: end;">
+                                <div class="followers flex column align-center">
+                                    <p style="font-size: 17px; font-weight: bold;">1223</p>
+                                    <small style="margin-top: -5px; display: block;">Followers</small>
+                                </div>
+                                <div class="following flex column align-center">
+                                    <p style="font-size: 17px; font-weight: bold;">1223</p>
+                                    <small style="margin-top: -5px; display: block;">Following</small>
+                                </div>
                             </div>
-                            <div class="hastag">
-                                <p class="hashtag-name">#تعلم_البرمجة</p>
-                                <small class="hashtag-number">1,301 منشور</small>
-                            </div>                            
-                        </div>
                     </div>
                 </div>
             </div>

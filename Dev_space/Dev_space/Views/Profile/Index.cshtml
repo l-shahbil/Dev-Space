@@ -1,4 +1,4 @@
-﻿@inject UserManager<ApplicationUser> userManger
+@inject UserManager<ApplicationUser> userManger
 @model RegisterVeiwModel
 @{
 
@@ -7,7 +7,34 @@
     document.querySelector(".navigation > a:nth-child(2)").classList.add("active-bar");
 </script>
 
-<div class="profile-page">
+<div class="profile-page" style="padding-bottom:200px">
+    <div class="more-popup-shadow">
+        <div class="popup-more-option">
+        <button class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite')">تعديل</button>
+        <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
+        </div>
+    </div>
+
+    @*twitt edit popup*@
+    <div class="twit-edite">
+        <div class="input-popup-shadow" style="display: block;">
+            <div class="popup-input">
+                <p>تعديل التغريدة</p>
+                <hr>
+                <div class="popup-input-box">
+                    <div class="image-container"><img src="assites/images/Profile.png" alt="Profile"></div>
+                    <textarea name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
+                    <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود" style="display: block;"></textarea>
+                    <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
+                </div>
+                <div class="action-buttons" style="margin-top: 16px;"> 
+                    <input type="submit" class="btn btn-primary" value="نشر">
+                    <div class="btn btn-secondary cansle-btn" onclick="showAndHide('twit-edite')" style="display: inline-block;">الغاء</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="account-information">
         <div class="image-container header-image">
             <img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="">
@@ -21,7 +48,10 @@
                     <h2 class="name">@((await userManger.GetUserAsync(User)).Name)</h2>
                     <p class="user-name">@((await userManger.GetUserAsync(User)).UserName)</p>
                 </div>
-                <button class="btn btn-secondary btn-hover" onclick="showAndHide('edit-popup-shadow')">تعديل الملف الشخصي</button>
+                <div style="display:flex; gap: 10px">
+                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('pass')">تغيير كلمة السر</button>
+                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('info')">تعديل الملف الشخصي</button>
+                </div>
             </div>
             <p class="account-bio">
                 @((await userManger.GetUserAsync(User)).Description)
@@ -124,7 +154,9 @@
               
             </div>
         </div>
-    <div class="edit-popup-shadow">
+    </div>
+
+<div class="edit-popup-shadow info">
         <form class="popup-edit" method="post" enctype="multipart/form-data" asp-action="UpdateUserData">
             <input asp-for="ChangeUserData.Id"  value="@((await userManger.GetUserAsync(User)).Id)" hidden/>
             <div class="edit-header">
@@ -137,12 +169,13 @@
             <div class="edit-images">
 
                 <div class="image-container header-image">
-                    <img id="imgCover" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="">
-                    <input asp-for="ChangeUserData.ImgCover" type="file" onchange="loadFile(event,'imgCover')" placeholder="click here"/>
+                    <img id="imgCover" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="Cover image" onclick="opne('imgCov');">
+                    <input asp-for="ChangeUserData.ImgCover" type="file" onchange="loadFile(event,'imgCover')" placeholder="click here" id="imgCov"/>
                 </div>
                 <div class="image-container profile-image">
-                    <img id="imgProfile" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="">
-                    <input asp-for="ChangeUserData.ImgProfile" type="file" onchange="loadFile(event,'imgProfile')" placeholder="click here" />
+
+                    <img id="imgProfile" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile image" onclick="opne('imgPro');">
+                    <input asp-for="ChangeUserData.ImgProfile" type="file" onchange="loadFile(event,'imgProfile')" placeholder="click here" id="imgPro" />
 
                 </div>
             </div>
@@ -162,7 +195,7 @@
                     <div>
                         
                         <small>النبذه الشخصية</small>
-                        <textarea asp-for="ChangeUserData.Discription" cols="30" rows="5" placeholder="النبذه الشخصية"></textarea>
+                        <textarea cols="30" rows="5" placeholder="النبذه الشخصية"></textarea>
                     </div>
                 </div>
                 <div class="social-accounts-links">
@@ -172,8 +205,20 @@
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div><input asp-for="ChangeUserData.LinkBehance" type="text" placeholder="هنا ضع الرابط" id="inputLinkBehance"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div><input asp-for="ChangeUserData.LinkGithub" type="text" placeholder="هنا ضع الرابط" id="inputLinkGithub"/></div>
                 </div>
+            </div>
         </form>
-        <form asp-action="ChangePasswrod" method="post">
+
+</div><div class="edit-popup-shadow pass">
+    <div class="popup-edit" method="post" enctype="multipart/form-data" asp-action="UpdateUserData" style="height:fit-content">
+            <div class="edit-header">
+                <div>
+                    <div onclick="showAndHide('pass')" style="cursor: pointer;" class="image-container"><img src="~/lib/assites/Icons/close-x-icone.svg" alt=""></div>
+                    <h2>تغيير كلمة السر</h2>
+                </div>
+            </div>
+
+            <div class="edit-other-info">
+            <form asp-action="ChangePasswrod" method="post">
                 <div class="change-password">
                     <h4>تغيير كلمة السر</h4>
                     <div>
@@ -189,10 +234,11 @@
                     </div>
                     <button class="btn btn-primary btn-hover">تغيير كلمة المرور</button>
                 </div>
-        </form>
+            </form>
             </div>
         </div>
-    
+</div>
+
 <script>
     var linkTwitter = document.getElementById('linkTwitter');
     var linkBehance = document.getElementById('linkBehance');
