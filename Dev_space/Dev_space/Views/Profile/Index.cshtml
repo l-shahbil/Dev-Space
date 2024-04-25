@@ -1,4 +1,4 @@
-﻿@inject UserManager<ApplicationUser> userManger
+@inject UserManager<ApplicationUser> userManger
 @model RegisterVeiwModel
 @{
 
@@ -57,9 +57,7 @@
                 @((await userManger.GetUserAsync(User)).Description)
             </p>
             <div class="social-accounts-btns">
-                @if(ViewBag.MyLink != null)
-                {      
-                    foreach (var item in ViewBag.MyLink)
+                    @foreach (var item in ViewBag.MyLink)
                     {
                         if (item.Type == 0 && item.URL != string.Empty)
                         {
@@ -80,7 +78,7 @@
                         }
             
                     }
-                }
+                
                 </div>
             <div class="account-following-info">
                 <p class="following">1200 <span>متابِعا</span></p>
@@ -91,22 +89,45 @@
     </div>
     <div class="account-twits">
 
-        <div class="twit-container">
-            <div class="twit-header">
+        
+            @foreach (var post in ViewBag.listPost )
+            {
+                
+                <div class="twit-container">
+                    <div class="twit-header">
                 <div class="account-info">
-                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
+                    <div class="image-container"><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt=""></div>
                     <div class="user-info">
-                        <p class="account-name">عبدالله بن شحبل</p>
-                        <small class="account-username">abud3l</small>
+                        <p class="account-name">@((await userManger.GetUserAsync(User)).Name)</p>
+                        <small class="account-username">@((await userManger.GetUserAsync(User)).UserName)</small>
                     </div>
                 </div>
-                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow');getPostId('@(post.Id)')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
             </div>
             <div class="twit-content">
-                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص <span>#العربي_هاشتاق</span> النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
-                <div class="image-container twit-image">
-                    <img src="~/lib/assites/images/twitte-image.png" alt="">
-                </div>
+                    @if(post.Text != string.Empty)
+                    {
+                        <pre class="content">@post.Text</pre>
+                    }
+                    @if(post.Codes != null)
+                    {
+                        @foreach (var code in post.Codes)
+                        {
+                            <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                            <pre class="code" style="direction: ltr;">@code.CodeText</pre>
+                        }
+                    }
+                    @if(post.Imgs != null)
+                    {
+                        @foreach (var img in post.Imgs)
+                        {
+                            <div class="image-container twit-image">
+                                <img src="~/Images/Post/@img.pathImg" alt="">
+                            </div>
+                        }
+                        
+                    }
+                    
             </div>
             <div class="twit-intraction-buttons">
                 <button class="like">
@@ -121,65 +142,16 @@
                 <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
             </div>
         </div>
-        <div class="twit-container">
-            <div class="twit-header">
-                <div class="account-info">
-                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
-                    <div class="user-info">
-                        <p class="account-name">عبدالله بن شحبل</p>
-                        <small class="account-username">abud3l</small>
-                    </div>
-                </div>
-                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
-            </div>
-            <div class="twit-content">
-                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
-            </div>
-                        <div class="twit-intraction-buttons">
-                <button class="like">
-                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
-                    <p class="like-amount">215 اعجاب</p>
-                </button>
-                <button class="comment">
-                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
-                    <p class="comment-amount">13 تعليق</p>
-                </button>
-                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
-            </div>
-        </div>
-        <div class="twit-container">
-            <div class="twit-header">
-                <div class="account-info">
-                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
-                    <div class="user-info">
-                        <p class="account-name">عبدالله بن شحبل</p>
-                        <small class="account-username">abud3l</small>
-                    </div>
-                </div>
-                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
-            </div>
-            <div class="twit-content">
-                <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
-                <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
-                <pre class="code" style="direction: ltr;">
-                    consle.log(fdsf)
-                    if(int i = 0 ; i < 10; i++)
-                    {
-    
-                    }</pre>
-            </div>
-                        <div class="twit-intraction-buttons">
-                <button class="like">
-                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
-                    <p class="like-amount">215 اعجاب</p>
-                </button>
-                <button class="comment">
-                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
-                    <p class="comment-amount">13 تعليق</p>
-                </button>
-                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            }
+     
+    </div>
+    <div class="more-popup-shadow">
+            <div class="popup-more-option">
+                    <a id="EditButton" class="btn btn-secondary btn-hover">تعديل</a>
+                    <a id="ShareButton" class="btn btn-secondary btn-hover">مشاركة</a>
+                    <a id="DeleteButton" class="btn btn-primary danger btn-hover">حذف المنشور</a>
+                    <button  class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
+              
             </div>
         </div>
     </div>
@@ -195,13 +167,16 @@
                 <button class="btn btn-primary btn-hover">حفظ</button>
             </div>
             <div class="edit-images">
+
                 <div class="image-container header-image">
                     <img id="imgCover" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="Cover image" onclick="opne('imgCov');">
                     <input asp-for="ChangeUserData.ImgCover" type="file" onchange="loadFile(event,'imgCover')" placeholder="click here" id="imgCov"/>
                 </div>
                 <div class="image-container profile-image">
+
                     <img id="imgProfile" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile image" onclick="opne('imgPro');">
                     <input asp-for="ChangeUserData.ImgProfile" type="file" onchange="loadFile(event,'imgProfile')" placeholder="click here" id="imgPro" />
+
                 </div>
             </div>
             <div class="edit-other-info">
@@ -289,6 +264,7 @@
             }
             reader.readAsDataURL(event.target.files[0])
         }
+    
 </script>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

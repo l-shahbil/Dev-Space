@@ -28,7 +28,7 @@ namespace Dev_space.Repository
             return query.ToList();
         }
 
-        T IRepository<T>.FindById(int Id)
+        T IRepository<T>.FindById(string Id)
         {
             return context.Set<T>().Find(Id);
         }
@@ -40,8 +40,9 @@ namespace Dev_space.Repository
         {
             return context.Set<T>().SingleOrDefault(match);
         }
-        //CURD
-        void IRepository<T>.AddItem(T item)
+        
+            //CURD
+            void IRepository<T>.AddItem(T item)
         {
             context.Set<T>().Add(item);
             context.SaveChanges();

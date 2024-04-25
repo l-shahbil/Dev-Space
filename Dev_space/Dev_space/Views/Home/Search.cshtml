@@ -1,0 +1,49 @@
+﻿@inject UserManager<ApplicationUser> userManger
+@model ICollection<ApplicationUser>
+
+
+<div class="search-result-page">
+    <input id="wordSearch" value="@ViewBag.wordSearch"  hidden/>
+    <div class="person-result">
+        <h3>الأشخاص</h3>
+        @foreach (var user in Model)
+        {
+            <div class="personal-card">
+                <div class="personal-info">
+                     <div class="image-container" style="width: 50px;"><img src="~/Images/Personal/@user.ImgUser" alt=""></div>
+                    <a href="/FriendProfile/Index?name=@user.UserName">
+                        <div class="user-info">
+                            <p class="account-name">@user.Name</p>
+                            <small class="account-username">@user.UserName</small>
+                        </div>
+                    </a>
+                </div>
+                @{
+                    var currentUser = (await userManger.GetUserAsync(User));
+                    var listFriend = await userManger.Users.Include(u => u.friends).FirstOrDefaultAsync(u => u.Id == currentUser.Id); 
+
+                    if (listFriend != null)
+                    {
+                        if(listFriend.friends.Any(f => f.IdFriend == user.Id))
+                        {
+                            <button class="btn btn-secondary btn-hover" onclick="unFollow(this,'@user.UserName','searchPage','@ViewBag.wordSearch')">الغاء المتابعة</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary btn-hover" onclick="follow(this,'@user.UserName','searchPage','@ViewBag.wordSearch')">متابعة</button>
+                        }
+
+                    }else{
+                        <button class="btn btn-primary btn-hover" onclick="follow(this,'@user.UserName','searchPage','@ViewBag.wordSearch')">متابعة</button>
+                    }
+                
+                }
+                
+            </div>
+        }
+        
+    </div>
+<script>
+   
+</script>
+</div>

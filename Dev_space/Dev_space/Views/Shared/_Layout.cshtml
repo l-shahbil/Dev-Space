@@ -20,10 +20,12 @@
         <div class="layout">
             <div class="herder">
                 <h1 class="logo"><span>Dev</span>Space</h1>
+               <form asp-controller="Home" asp-action="Search" method="post">
                 <div class="search-box">
-                    <input type="search" class="search-input " placeholder="اكتب ما تريد البحث عنه" >
-                    <div class="image-container"><img src="~/lib/assites/Icons/search-normal.svg" alt="search"></div>
+                        <input name="userName" type="search" class="search-input " placeholder="اكتب ما تريد البحث عنه" >
+                        <div class="image-container"><img src="~/lib/assites/Icons/search-normal.svg" alt="search"></div>
                 </div>
+                </form>
             </div>
             <div class="body">
 
@@ -32,19 +34,23 @@
                     <div class="navigation" style="margin-top:40px">
                         <a class="nav " asp-controller="Home" asp-action="Index" > <img src="~/lib/assites/Icons/home.svg" alt=""> الرئيسية</a>
                         <a class="nav" asp-controller="Profile" asp-action="Index" > <img src="~/lib/assites/Icons/profile.svg" alt=""> الملف الشخصي</a>
-                        <a class="nav" asp-controller="" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>
+                        <a class="nav" asp-controller="Notification" asp-action="notification" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>
                         <a class="nav" asp-controller="Bookmarks" asp-action="bookmarks" > <img src="~/lib/assites/Icons/Bookmark.svg" alt=""> المحفوظات</a>
-                        <a class="nav logout" href="Accounts/Logout"> <img src="~/lib/assites/Icons/Logout.svg" alt=""> تسجيل الخروج</a>
+                        <a class="nav logout" asp-controller="Accounts" asp-action="Logout"> <img src="~/lib/assites/Icons/Logout.svg" alt=""> تسجيل الخروج</a>
                     </div>
                 </div>
 
                 <div class="center-side">
                     <main role="main" style="height:100%">
                     @RenderBody()
-                    </main>
 
-                    
-
+                    </main>  
+                    <div class="more-popup-shadow">
+                                    <div class="popup-more-option">
+                                    <button class="btn btn-secondary btn-hover">مشاركة</button>
+                                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
+                                    </div>
+                   </div>
                 </div>
 
                 <div class="left-sidebar">
