@@ -17,20 +17,35 @@ namespace Dev_space.Controllers
         private IRepository<Link> _repositoryLink;
         private  AppDbContext _context;
         private  IHostingEnvironment _host;
+        private  IRepository<Post> _repoPost;
+        private IRepository<Friend> _repoFriend;
+        private IRepository<ApplicationUser> _repoUser;
 
-        public ProfileController(UserManager<ApplicationUser>userManger,IRepository<Link> repositoryLink,AppDbContext context, IHostingEnvironment host)
+        public ProfileController(UserManager<ApplicationUser>userManger,IRepository<Link> repositoryLink,AppDbContext context, IHostingEnvironment host,IRepository<Post>repoPost,IRepository<Friend> repoFriend,IRepository<ApplicationUser> repoUser)
         {
             _userManger = userManger;
             _repositoryLink = repositoryLink;
             _context = context;
             _host = host;
+            _repoPost = repoPost;
+            _repoFriend = repoFriend;
+            _repoUser = repoUser;
         }
         public async Task<IActionResult> Index()
         {
             var user = await _userManger.GetUserAsync(User);
             var listLink = _repositoryLink.GetAll().Where(u => u.UserId== user.Id);
             ViewBag.MyLink = listLink;
-            
+
+            var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user);
+            ViewBag.listPost = listPost;
+
+            var listFollowMe = _repoUser.FindAllItem("friends").Where(u => u.Id == user.Id);
+            ViewBag.followMe = listFollowMe.Count();
+
+            //var listFollowers = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
+            //ViewBag.followers = listFollowers.Count();
+
             return View();
         }
         [HttpPost]

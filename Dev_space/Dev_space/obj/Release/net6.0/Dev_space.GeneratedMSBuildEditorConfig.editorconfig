@@ -47,8 +47,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va21hcmtzXGJvb2ttYXJrcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/FrindProfile/frindProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJpbmRQcm9maWxlXGZyaW5kUHJvZmlsZS5jc2h0bWw=
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/FriendProfile/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJpZW5kUHJvZmlsZVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Hashtag/hashtag.cshtml]
@@ -61,6 +61,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Home/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/Notification/notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXG5vdGlmaWNhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Dev-Space/CSG1-Shahbil/Dev_space/Dev_space/Views/PostComments/PostComments.cshtml]

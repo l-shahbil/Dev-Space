@@ -15,11 +15,35 @@ function showAndHide(eleClass) {
     element = document.querySelector(`.${eleClass}`);
     element.classList.toggle("active");
 
-    
-   
-   
+}
+//for button delete and update
+function getPostId(id) {
+    console.log(id);
+    document.getElementById('DeleteButton').href = `/Home/DeletePost?id=${id}`;
 }
 
+//for follow 
+function follow(element,userName, pageName, wordSearch) {
+        //This code for follow from the search page
+        if (wordSearch != '') {
+            window.location.href = `/Home/Follow?userName=${userName}&pageName=${pageName}&wordSearch=${wordSearch}`;
+        }
+        //This code for follow from the profileFriend page
+        else {
+            window.location.href = `/Home/Follow?userName=${userName}&pageName=${pageName}&wordSearch=''`;
+        }
+}
+//for Unfollow
+function unFollow(element, userName, pageName, wordSearch) {
+    //This code for unfollow from the search page
+    if (wordSearch != '') {
+        window.location.href = `/Home/unFollow?userName=${userName}&pageName=${pageName}&wordSearch=${wordSearch}`;
+    }
+    //This code for unfollow from the profileFriend page
+    else {
+        window.location.href = `/Home/unFollow?userName=${userName}&pageName=${pageName}&wordSearch=''`;
+    }
+}
 function copyCode(eleClass) {
     const copyBtn = document.querySelector(".copy-code-btn");
     const textToCopy = document.querySelector(`.${eleClass}`).textContent;
@@ -36,15 +60,7 @@ function copyCode(eleClass) {
     });
 }
 
-function changeText(element) {
-    if (element.textContent == "متابعة") {
-        element.textContent = "الغاء المتابعة";
-        element.className = "btn btn-secondary btn-hover";
-    } else {
-        element.className = "btn btn-primary btn-hover";
-        element.textContent = "متابعة";
-    }
-}
+
 
 function changeProfileImage(imageClass) {
     let image = document.querySelector(`.${imageClass}`);
@@ -122,3 +138,4 @@ function changeStatusToHover(icone) {
         else icone.src = "assites/Icons/Hover-outline-bookmark.svg";
     }
 }
+

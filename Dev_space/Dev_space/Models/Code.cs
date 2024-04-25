@@ -11,6 +11,7 @@ namespace Dev_space.Models
 
         //Relationships
         [ForeignKey("PostID")]
+        [Required]
         public Post? post { get; set; }
     }
 }
