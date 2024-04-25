@@ -1,34 +1,67 @@
-﻿<div class="frind-profile-page">
+﻿@inject UserManager<ApplicationUser> userManger
+@model ApplicationUser
+<div class="frind-profile-page">
 
                 <div class="page-header" style="justify-content: start;">
-                        <div class="image-container"><img src="~/lib/assites/Icons/arrow.svg" alt=""></div>
-                        <h3>عبدالله بن شحبل<h3>
+                        <a href="/Home/Index">
+                            <div class="image-container"><img src="~/lib/assites/Icons/arrow.svg" alt=""></div>
+                        </a>
+                        <h3>@Model.Name</h3>
                 </div>
 
                 <div class="account-information">
                     <div class="image-container header-image">
-                        <img src="~/lib/assites/images/header-image.jpg" alt="">
+                        <img src="~/Images/Personal/@Model.CoverImgUser" alt="">
                     </div>
                     <div class="image-container profile-image">
-                        <img src="~/lib/assites/images/Profile.png" alt="">
+                        <img src="~/Images/Personal/@Model.ImgUser" alt="">
                     </div>
                     <div class="profile-account-info">
                         <div class="account-name-and-btn">
                             <div class="account-names">
-                                <h2 class="name">عبدالله بن شحبل</h2>
-                                <p class="user-name">abud3l</p>
+                                <h2 class="name">@Model.Name</h2>
+                                <p class="user-name">@Model.UserName</p>
                             </div>
-                            <button class="btn btn-primary btn-hover" onclick="changeText(this)">متابعة</button>
+                            @{
+                                var currentUser = (await userManger.GetUserAsync(User));
+                                var listFriend = await userManger.Users.Include(u => u.friends).FirstOrDefaultAsync(u => u.Id == currentUser.Id); 
+                                if(listFriend.friends.Any(f => f.IdFriend == Model.Id))
+                                {
+                            <button class="btn btn-secondary btn-hover" onclick="unFollow(this,'@Model.UserName','ProfilePage','')">الغاء المتابعة</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-primary btn-hover" onclick="follow(this,'@Model.UserName','ProfilePage','')">متابعة</button>
+                                }
+                             }
                         </div>
                         <p class="account-bio">
-                            انا اسمي عبدالله بن شحبل طالب علوم حاسوب في جامعة حضرموت
+                            @Model.Description
                         </p>
                         <div class="social-accounts-btns">
-                            <a href="#" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div></a>
-                            <a href="" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div></a>
-                            <a href="" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div></a>
-                            <a href="" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div></a>
-                        </div>
+                    @foreach (var item in ViewBag.Links)
+                    {
+                        if (item.Type == 0 && item.URL != string.Empty)
+                        {
+                            
+                            <a id="linkTwitter" target="_blank" href="@item.URL" class="btn-secondary btn-hover" value><div class="image-container"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div></a>
+                            
+                        }
+                        else if(item.Type==1 && item.URL != string.Empty){
+                            <a id="linkGithub" target="_blank" href="@item.URL" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div></a>
+                        }
+                        else if(item.Type == 2 && item.URL != string.Empty){
+                            <a id="linkBehance" target="_blank" href="@item.URL" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div></a>
+                        
+                        }
+                        else if(item.Type == 3 && item.URL != string.Empty){
+                        
+                            <a id="linkInstgram" target="_blank" href="@item.URL" class="btn-secondary btn-hover"><div class="image-container"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div></a>
+                        }
+            
+                    }
+                
+                </div>
                         <div class="account-following-info">
                             <p class="following">1200 <span>متابِعا</span></p>
                             <p class="following">34 <span>متابَعا</span></p>
@@ -37,8 +70,61 @@
                     <hr>
                 </div>
                 <div class="account-twits">
+                    @foreach (var post in ViewBag.listPost )
+            {
+                
+                <div class="twit-container">
+                    <div class="twit-header">
+                <div class="account-info">
+                    <div class="image-container"><img src="~/Images/Personal/@Model.ImgUser" alt=""></div>
+                    <div class="user-info">
+                        <p class="account-name">@Model.Name</p>
+                        <small class="account-username">@Model.UserName</small>
+                    </div>
+                </div>
+                <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow');getPostId('@(post.Id)')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+            </div>
+            <div class="twit-content">
+                    @if(post.Text != string.Empty)
+                    {
+                        <pre class="content">@post.Text</pre>
+                    }
+                    @if(post.Codes != null)
+                    {
+                        @foreach (var code in post.Codes)
+                        {
+                            <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                            <pre class="code" style="direction: ltr;">@code.CodeText</pre>
+                        }
+                    }
+                    @if(post.Imgs != null)
+                    {
+                        @foreach (var img in post.Imgs)
+                        {
+                            <div class="image-container twit-image">
+                                <img src="~/Images/Post/@img.pathImg" alt="">
+                            </div>
+                        }
+                        
+                    }
+                    
+            </div>
+            <div class="twit-intraction-buttons">
+                <button class="like">
+                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                    <p class="like-amount">215 اعجاب</p>
+                </button>
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
+                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
+            </div>
+        </div>
+            }
 
-                    <div class="twit-container">
+                    @*<div class="twit-container">
                         <div class="twit-header">
                             <div class="account-info">
                                 <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
@@ -110,11 +196,12 @@
                             <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
                             <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
                             <pre class="code" style="direction: ltr;">
-consle.log(fdsf)
-    if(int i = 0 ; i < 10; i++)
-    {
+                            consle.log(fdsf)
+                                if(int i = 0 ; i < 10; i++)
+                                {
     
-    }</pre>
+                                }</pre>
+                        </div>
                         </div>
                         <div class="twit-intraction-buttons">
                             <button class="like">
@@ -128,6 +215,6 @@ consle.log(fdsf)
                             <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
                             <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>

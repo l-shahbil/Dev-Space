@@ -10,8 +10,11 @@ namespace Dev_space.Models
         public string Id { get; set; }
         [Required]
         public string Text { get; set; } = string.Empty;
-        public DateTime Date { get; set; }= DateTime.Now;
-
+        public DateTime Date { get; set; }
+        [NotMapped]
+        public IFormFile Img { get; set; }
+        [NotMapped]
+        public string Code { get; set; }
         //relationships
         [ForeignKey("UserId")]
         public ApplicationUser? User { get; set; }

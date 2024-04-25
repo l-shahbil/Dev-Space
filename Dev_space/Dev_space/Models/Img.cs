@@ -7,12 +7,11 @@ namespace Dev_space.Models
     {
         [Key]
         public string Id { get; set; }
-        public string? pathImg { get; set; }
-        [NotMapped]
-        public IFormFile img { get; set; }
+        public string pathImg { get; set; }
 
         //Relationships
         [ForeignKey("PostID")]
+        [Required]
         public Post? post { get; set; }
     }
 }
