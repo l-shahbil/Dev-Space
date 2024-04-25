@@ -460,7 +460,7 @@ overflow: hidden;
 }
 
 .header-image {
-height: 200px;
+height: 250px;
 overflow: hidden;
 }
 
@@ -472,6 +472,7 @@ border-radius: 20px;
 position: relative;
 top: -70px;
 right: 40px;
+overflow:hidden;
 border: 0.5px solid #0000002d;
 }
 
@@ -693,8 +694,8 @@ align-self: self-start;
     width: 100%;
 }
 
-.profile-page .edit-popup-shadow .popup-edit .edit-images .image-container::before {
-    content: "Click to change image";
+/*.profile-page .edit-popup-shadow .popup-edit .edit-images .image-container::before {
+    content: "Click to change ";
     position: absolute;
     width: 100%;
     height: 100%;
@@ -705,7 +706,7 @@ align-self: self-start;
     justify-content: center;
     align-items: center;
     font-size: 12px;
-}
+}*/
 
 
 /*Notification page style *************************** */
@@ -794,7 +795,13 @@ align-self: self-start;
     gap: 10px;
     align-items: flex-start;
 }
-
+.form-input-boxes .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    gap: 10px;
+}
 .form-input-boxes input, select {
     background-color: var(--input-boxs);
     padding: 10px;
@@ -823,36 +830,49 @@ align-self: self-start;
 
 /* Left side bar #################################################################################*/
 .layout .body .left-sidebar {
-background-color: var(--waite-color);
-width: 350px;
-height: calc(100vh - 71px);
-padding: 16px;
+    background-color: var(--waite-color);
+    width: 350px;
+    height: calc(100vh - 71px);
+    padding: 16px;
 }
 
-.layout .body .left-sidebar .hashtags .you-follow {
-display: flex;
-flex-direction: column;
-gap: 6px;
+.layout .body .left-sidebar .short-profile-background {
+    padding: 6px 10px;
+    /* border: 0.5px solid #0000002f; */
+    border-radius: 5px;
+    margin: 24px 0px;
+    background-color: #edf0ff;
 }
 
-.layout .body .left-sidebar .hashtags .you-follow h3 {
-margin-bottom: 6px
+.layout .body .left-sidebar .profile .name {
+    font-weight: bold;
+    font-size: 15px;
 }
 
-.layout .body .left-sidebar .hashtags .for-you {
-margin-top: 16px;
-display: flex;
-flex-direction: column;
-gap: 6px;
+.layout .body .left-sidebar .profile .user-name {
+    opacity: 70%;
+    font-size: 15px;
+    margin-top: -3px;
 }
 
-.layout .body .left-sidebar .hastag .hashtag-name {
-font-size: 14px;
-font-weight: 500;
-display: block;
+.twit-edite {
+    display: none;
 }
 
-.layout .body .left-sidebar .hastag .hashtag-number {
-font-size: 12px;
-display: block;
+/* Global style */
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+
+.change-pass {
+    display:none;
 }

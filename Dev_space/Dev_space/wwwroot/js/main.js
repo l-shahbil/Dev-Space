@@ -14,12 +14,7 @@ function showAndHide(eleClass) {
     let element;
     element = document.querySelector(`.${eleClass}`);
     element.classList.toggle("active");
-
-    
-   
-   
 }
-
 function copyCode(eleClass) {
     const copyBtn = document.querySelector(".copy-code-btn");
     const textToCopy = document.querySelector(`.${eleClass}`).textContent;
@@ -71,7 +66,7 @@ function changeProfileImage(imageClass) {
     });
 }
 
-function openImageDailog() {
+function openImageDailog(inputImageClass) {
     let image = document.querySelector(".image-of-new-twit");
     let imageContainer = document.getElementById("new-twit-image-container");
     let span = document.querySelector(
@@ -80,9 +75,7 @@ function openImageDailog() {
 
     if (span.textContent == "إضافة صورة") {
         // Create an input element
-        var input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*"; // Accept only image files
+        var input = document.querySelector(`.${inputImageClass}`);
 
         // Trigger the file selection dialog when clicked
         input.click();
@@ -121,4 +114,9 @@ function changeStatusToHover(icone) {
             icone.src = "assites/Icons/outline-bookmark.svg";
         else icone.src = "assites/Icons/Hover-outline-bookmark.svg";
     }
+}
+
+function opne(selector) {
+    let input = document.getElementById(`${selector}`);
+    input.click();
 }

@@ -2,6 +2,9 @@
 @{
     Layout = "";
 }
+<head> 
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
 <div class="login-and-signup-page">
     <h1 class="logo"><span>Dev</span>Space</h1>
 
@@ -19,12 +22,12 @@
             <input asp-for="UserName" type="text" placeholder="اسم المستخدم" required>
             <small>كلمة المرور</small>
             <input asp-for="Password" type="password" placeholder="كلمة المرور" required>
-            <input type="checkbox" id="remember" asp-for="RemmeberMe">
-              <label for="remember">
-                تذكرني
-              </label>
+            <div style="display: flex; gap: 10px">
+                <input type="checkbox" id="remember" asp-for="RemmeberMe" style="display: inline">
+                <label style="display: inline" for="remember">تذكرني</label>
+            </div>
             <button class="btn btn-primary btn-hover">دخول</button>
-            <p style="margin: 0 auto;">ليس لديك حساب؟ <a href="/Accounts/Register"><span>انشاء حساب جديد</span></a></p>
+            <p style="margin: 0 auto 40px;">ليس لديك حساب؟ <a href="/Accounts/Register"><span>انشاء حساب جديد</span></a></p>
         </div>
     </form>
 </div>

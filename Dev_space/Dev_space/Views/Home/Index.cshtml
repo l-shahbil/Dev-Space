@@ -21,27 +21,20 @@
                 <p>في ماذا تفكر؟</p>
                 <hr>
                 <div class="popup-input-box">
-                    <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt="Profile"></div>
+                    <div class="image-container"><img src="assites/images/Profile.png" alt="Profile"></div>
                     <textarea name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
                     <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود"></textarea>
+                    <input type="file" class="popup-input-image" accept="image/*" style="display: none;">
                     <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
                 </div>
                 <div class="action-buttons">
                     <div class="media-buttons">
-                        <div class="btn" onclick="openImageDailog()"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
+                        <div class="btn" onclick="openImageDailog('popup-input-image')"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
                         <div class="btn" onclick="showAndHide('code-box')"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة كود</div>
                     </div>  
                     <input type="submit" class="btn btn-primary" value="نشر">
                     <div class="btn btn-secondary cansle-btn" onclick="showAndHide('input-popup-shadow')" style="display: inline-block;">الغاء</div>
                 </div>
-            </div>
-        </div>
-        <div class="more-popup-shadow">
-            <div class="popup-more-option">
-                <button class="btn btn-secondary btn-hover">تعديل</button>
-                <button class="btn btn-secondary btn-hover">مشاركة</button>
-                <button class="btn btn-primary danger btn-hover">حذف المنشور</button>
-                <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
             </div>
         </div>
     </div>
