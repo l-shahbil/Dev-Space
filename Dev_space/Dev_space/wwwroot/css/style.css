@@ -209,6 +209,8 @@ display: none;
 background-color: var(--waite-color);
 padding: 24px;
 border-radius: 10px;
+position: relative;
+z-index: 10;
 }
 
 .layout .body .center-side .think-container p {
@@ -448,15 +450,33 @@ height: 24px;
 border: 0.5px solid #0000002d;
 }
 
+.d-block {
+    display:block;
+    margin: 0 auto;
+}
 
-
+.update-home {
+    display: non;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80px;
+}
+.update-home.down {
+    display: block;
+    transition: 2s;
+    top: 150px;
+    box-shadow:1px black;
+}
+.home-page {
+    position: relative;
+}
 
 /* Profile page style */
 .profile-page {
-/* position: relative; */
-background-color: var(--waite-color);
-border-radius: 10px;
-overflow: hidden;
+    background-color: var(--waite-color);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .header-image {
@@ -825,6 +845,42 @@ align-self: self-start;
 .form-input-boxes span {
     color: var(--main-color);
     font-weight: bold;
+}
+
+/* search result page sytle */
+.search-result-page .person-result .personal-card {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: var(--waite-color);
+}
+
+.search-result-page .person-result .personal-card .personal-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.search-result-page .image-container img {
+    border: 0.5px solid #0000002f;
+    border-radius: 50%;
+}
+
+.search-result-page .hashtag-result {
+    margin-top: 20px;
+}
+
+.search-result-page .hashtag-result .hashtag-card {
+    background-color: var(--waite-color);
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 10px;
 }
 
 

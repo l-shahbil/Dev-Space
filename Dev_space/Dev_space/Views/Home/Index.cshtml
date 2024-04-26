@@ -8,7 +8,7 @@
 </script>
 
 
-<div class="home-page">
+<div class="home-page" id="home" style="padding-bottom: 150px">
                         
     <div class="think-container">
         <p>في ماذا تفكر؟</p>
@@ -44,6 +44,8 @@
                 </form>
         </div>
     </div>
+    
+    <button class="btn btn-primary btn-hover d-block update-home" id="home-update-btn" onclick="afterDelay(this)">تحديث الخلاصة</button>
 
     <div class="twit-container">
         <div class="twit-header">
@@ -138,4 +140,6 @@ if(int i = 0 ; i < 10; i++)
             <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
         </div>
     </div>
+
+    <button class="btn btn-primary btn-hover d-block">المزيد</button>
 </div>

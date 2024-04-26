@@ -1,6 +1,9 @@
 ﻿@inject UserManager<ApplicationUser> userManger
 @model ICollection<ApplicationUser>
 
+<head>
+        <link rel="stylesheet" href="~/css/style.css">
+</head>
 
 <div class="search-result-page">
     <input id="wordSearch" value="@ViewBag.wordSearch"  hidden/>
@@ -41,9 +44,8 @@
                 
             </div>
         }
-        
     </div>
+</div>
 <script>
    
 </script>
-</div>
