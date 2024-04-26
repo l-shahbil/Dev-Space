@@ -1,5 +1,9 @@
+let isScroll = false;
+let homePage = document.querySelector('.center-side');
+let button = document.querySelector('#home-update-btn');
 const navItems = document.querySelectorAll(".nav");
-// let a = document.createElement("div");
+
+
 
 document.addEventListener("click", (ele) => {
     if (ele.target.className === "nav") {
@@ -17,8 +21,6 @@ function showAndHide(eleClass) {
 
 }
 
-
-}
 //for button delete and update
 function getPostId(id) {
     console.log(id);
@@ -63,8 +65,6 @@ function copyCode(eleClass) {
         }, 2000);
     });
 }
-
-
 
 function changeProfileImage(imageClass) {
     let image = document.querySelector(`.${imageClass}`);
@@ -128,7 +128,6 @@ function openImageDailog(inputImageClass) {
         span.textContent = "إضافة صورة";
     }
 }
-
 function changeStatusToHover(icone) {
     if (icone.src.includes("heart")) {
         if (icone.src.includes("Hover"))
@@ -141,9 +140,33 @@ function changeStatusToHover(icone) {
     }
 }
 
-
 function opne(selector) {
     let input = document.getElementById(`${selector}`);
     input.click();
 }
 
+
+
+
+homePage.addEventListener('scroll', function () {
+    if (homePage.scrollTop === 0) {
+        isScroll = false;
+        setTimeout(function () {
+            dropButton();
+        }, 60000);
+    }
+    else {
+        isScroll = true;
+        button.classList.remove('down');
+    }
+});
+
+function dropButton() {
+    if (!isScroll) {
+        button.classList.add('down');
+    }
+}
+
+setTimeout(function () {
+    dropButton();
+}, 60000)
