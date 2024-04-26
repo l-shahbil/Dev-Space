@@ -128,6 +128,7 @@ function openImageDailog(inputImageClass) {
         span.textContent = "إضافة صورة";
     }
 }
+
 function changeStatusToHover(icone) {
     if (icone.src.includes("heart")) {
         if (icone.src.includes("Hover"))
@@ -145,28 +146,11 @@ function opne(selector) {
     input.click();
 }
 
-
-
-
-homePage.addEventListener('scroll', function () {
-    if (homePage.scrollTop === 0) {
-        isScroll = false;
-        setTimeout(function () {
-            dropButton();
-        }, 60000);
-    }
-    else {
-        isScroll = true;
-        button.classList.remove('down');
-    }
-});
-
-function dropButton() {
-    if (!isScroll) {
+function updateHomePage() {
+    setTimeout(function () {
         button.classList.add('down');
-    }
+        updateHomePage();
+    }, 18000)
 }
 
-setTimeout(function () {
-    dropButton();
-}, 60000)
+document.onload(updateHomePage())
