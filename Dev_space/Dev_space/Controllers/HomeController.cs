@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Dev_space.Controllers
 {
@@ -12,6 +13,7 @@ namespace Dev_space.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IHostingEnvironment _host;
         private IRepository<ApplicationUser> _repoUser;
         private IRepository<Friend> _repoFriend;
         private  IRepository<Post> _repoPost;
@@ -19,9 +21,10 @@ namespace Dev_space.Controllers
         private IRepository<Img> _repoImg;
         private UserManager<ApplicationUser> _userManger;
 
-        public HomeController(ILogger<HomeController> logger,IRepository<ApplicationUser> repoUser,IRepository<Friend>repoFriend,IRepository<Post> repoPost,IRepository<Code> repoCode,IRepository<Img> repoImg, UserManager<ApplicationUser> userManger)
+        public HomeController(ILogger<HomeController> logger, IHostingEnvironment host, IRepository<ApplicationUser> repoUser,IRepository<Friend>repoFriend,IRepository<Post> repoPost,IRepository<Code> repoCode,IRepository<Img> repoImg, UserManager<ApplicationUser> userManger)
         {
             _logger = logger;
+            _host = host;
             _repoUser = repoUser;
             _repoFriend = repoFriend;
             _repoPost = repoPost;
@@ -30,9 +33,17 @@ namespace Dev_space.Controllers
             _userManger = userManger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+
         {
-            
+            var user = await _userManger.GetUserAsync(User);
+            //This line is to count the number of people you have followed
+            var listFollowHim = _repoUser.FindAllItem("friends").FirstOrDefault(u => u.Id == user.Id);
+            ViewBag.followHim = listFollowHim.friends.Count();
+
+            //This line is to count the number of people who followed me
+            var listFollowMe = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
+            ViewBag.followMe = listFollowMe.Count();
             return View();
         }
         [HttpPost]
@@ -66,10 +77,15 @@ namespace Dev_space.Controllers
                 _repoPost.AddItem(post);
                 if (p.Img != null)
                 {
+                    string myUpload = Path.Combine(_host.WebRootPath, "Images/Post");
+                    string fileExtention = Path.GetExtension(p.Img.FileName);
+                    string fileName = $"{Guid.NewGuid()}{fileExtention}";
+                    string fullPath = Path.Combine(myUpload,fileName );
+                    p.Img.CopyTo(new FileStream(fullPath, FileMode.Create));
                     var Img = new Img
                     {
                         Id = Guid.NewGuid().ToString(),
-                        pathImg = p.Img.FileName,
+                        pathImg = fileName,
                         post = post
                     };
                     _repoImg.AddItem(Img);
@@ -107,6 +123,9 @@ namespace Dev_space.Controllers
         
         public async Task<IActionResult> Search(string userName)
         {
+            if (!(string.IsNullOrEmpty(userName)))
+            {
+
             var user = await _userManger.GetUserAsync(User);
             ViewBag.wordSearch = userName;
             var listUser = _repoUser.GetAll().Where(u => u.UserName.Contains(userName)).ToList();
@@ -116,6 +135,8 @@ namespace Dev_space.Controllers
                 listUser.Remove(user);
             }
             return View(listUser);
+            }
+            return View();
         }
         public async Task<IActionResult> Follow(string userName, string pageName, string wordSearch)
         {

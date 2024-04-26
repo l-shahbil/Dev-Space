@@ -34,17 +34,20 @@ namespace Dev_space.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManger.GetUserAsync(User);
+    
             var listLink = _repositoryLink.GetAll().Where(u => u.UserId== user.Id);
             ViewBag.MyLink = listLink;
 
-            var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user);
+            var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user).OrderByDescending(p => p.Date);
             ViewBag.listPost = listPost;
 
-            var listFollowMe = _repoUser.FindAllItem("friends").Where(u => u.Id == user.Id);
-            ViewBag.followMe = listFollowMe.Count();
+            //This line is to count the number of people you have followed
+            var listFollowHim = _repoUser.FindAllItem("friends").FirstOrDefault(u => u.Id == user.Id);
+            ViewBag.followHim = listFollowHim.friends.Count();
 
-            //var listFollowers = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
-            //ViewBag.followers = listFollowers.Count();
+            //This line is to count the number of people who followed me
+            var listFollowMe = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
+            ViewBag.followMe = listFollowMe.Count();
 
             return View();
         }
@@ -74,16 +77,19 @@ namespace Dev_space.Controllers
                 if(model.ChangeUserData.ImgProfile != null)
                 {
                     string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
-                    ImgProfileName = model.ChangeUserData.ImgProfile.FileName;
-                    string fullPath = Path.Combine(MyUplod, ImgProfileName);
+                    string fileExtention = Path.GetExtension(model.ChangeUserData.ImgProfile.FileName);
+                    string fileName = $"{Guid.NewGuid()}{fileExtention}";
+                    string fullPath = Path.Combine(MyUplod, fileName);
                     model.ChangeUserData.ImgProfile.CopyTo(new FileStream(fullPath, FileMode.Create));
-                    
+
+
                 }
                 if(model.ChangeUserData.ImgCover != null)
                 {
                     string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
-                    ImgCoverName = model.ChangeUserData.ImgCover.FileName;
-                    string fullPath = Path.Combine(MyUplod, ImgCoverName);
+                    string fileExtention = Path.GetExtension(model.ChangeUserData.ImgCover.FileName);
+                    string fileName = $"{Guid.NewGuid()}{fileExtention}";
+                    string fullPath = Path.Combine(MyUplod, fileName);
                     model.ChangeUserData.ImgCover.CopyTo(new FileStream(fullPath, FileMode.Create));
                 }
                 var user = await _userManger.FindByIdAsync(model.ChangeUserData.Id);

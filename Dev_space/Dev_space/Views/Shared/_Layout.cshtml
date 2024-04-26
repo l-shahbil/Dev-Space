@@ -69,12 +69,12 @@
                         </div>
                             <div class="flex" style="justify-content: center; gap: 20px; margin-top: 10px; align-items: end;">
                                 <div class="followers flex column align-center">
-                                    <p style="font-size: 17px; font-weight: bold;">1223</p>
-                                    <small style="margin-top: -5px; display: block;">Followers</small>
+                                    <p style="font-size: 17px; font-weight: bold;">@ViewBag.followMe</p>
+                                    <small style="margin-top: -5px; display: block;">متابِعا</small>
                                 </div>
                                 <div class="following flex column align-center">
-                                    <p style="font-size: 17px; font-weight: bold;">1223</p>
-                                    <small style="margin-top: -5px; display: block;">Following</small>
+                                    <p style="font-size: 17px; font-weight: bold;">@ViewBag.followHim</p>
+                                    <small style="margin-top: -5px; display: block;">متابَعا</small>
                                 </div>
                             </div>
                     </div>
@@ -83,12 +83,11 @@
         </div>
     </div>
 
+    <script src="~/js/main.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
-    <script src="~/js/main.js"></script>
 
 </body>
 </html>

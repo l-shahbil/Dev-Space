@@ -21,7 +21,12 @@ function showAndHide(eleClass) {
 
 }
 
+<<<<<<< HEAD
 //for button delete and update
+=======
+
+//for button delete and update 
+>>>>>>> 389ace0 (some modifieds)
 function getPostId(id) {
     console.log(id);
     document.getElementById('DeleteButton').href = `/Home/DeletePost?id=${id}`;
@@ -128,6 +133,11 @@ function openImageDailog(inputImageClass) {
         span.textContent = "إضافة صورة";
     }
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 389ace0 (some modifieds)
 function changeStatusToHover(icone) {
     if (icone.src.includes("heart")) {
         if (icone.src.includes("Hover"))

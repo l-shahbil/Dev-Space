@@ -29,12 +29,12 @@
                             <div class="image-container"><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile"></div>
                             <textarea asp-for="Text" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
                             <textarea asp-for="Code" class="code-box"rows="5" placeholder="اكتب الكود"></textarea>
-                            <input type="file" class="popup-input-image" accept="image/*" style="display: none;">
+                            <input asp-for="Img"  type="file" class="popup-input-image" accept="image/*" style="display: none;">
                             <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
                         </div>
                         <div class="action-buttons">
                             <div class="media-buttons">
-                                <div class="btn" onclick="openImageDailog()"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
+                                <div class="btn" onclick="openImageDailog('popup-input-image')"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
                                 <div class="btn" onclick="showAndHide('code-box')"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة كود</div>
                             </div>  
                             <input type="submit" class="btn btn-primary" value="نشر">
