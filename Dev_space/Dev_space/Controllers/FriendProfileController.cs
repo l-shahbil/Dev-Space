@@ -28,7 +28,7 @@ namespace Dev_space.Controllers
                 var listLink = _repoLink.GetAll().Where(u => u.UserId == user.Id);
                 ViewBag.Links = listLink;
 
-                var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user);
+                var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user).OrderByDescending(p => p.Date);
                 ViewBag.listPost = listPost;
 
                 return View(user);

@@ -12,7 +12,6 @@
 
 <div class="home-page" id="home" style="padding-bottom: 150px">
 
-                        
     <div class="think-container">
         <p>في ماذا تفكر؟</p>
         <hr>
@@ -32,12 +31,12 @@
                             <div class="image-container"><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile"></div>
                             <textarea asp-for="Text" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
                             <textarea asp-for="Code" class="code-box"rows="5" placeholder="اكتب الكود"></textarea>
-                            <input type="file" class="popup-input-image" accept="image/*" style="display: none;">
+                            <input asp-for="Img"  type="file" class="popup-input-image" accept="image/*" style="display: none;">
                             <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
                         </div>
                         <div class="action-buttons">
                             <div class="media-buttons">
-                                <div class="btn" onclick="openImageDailog()"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
+                                <div class="btn" onclick="openImageDailog('popup-input-image')"><img src="~/lib/assites/Icons/image.svg" alt=""><span>إضافة صورة</span></div>
                                 <div class="btn" onclick="showAndHide('code-box')"><img src="~/lib/assites/Icons/video.svg" alt="">إضافة كود</div>
                             </div>  
                             <input type="submit" class="btn btn-primary" value="نشر">
@@ -46,10 +45,68 @@
                     </div>
                 </form>
         </div>
+        <div class="more-popup-shadow">
+                                    <div class="popup-more-option">
+                                    <button class="btn btn-secondary btn-hover">مشاركة</button>
+                                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
+                                    </div>
+                   </div>
     </div>
     
 
-    <div class="twit-container">
+    <div id="dataContainer">
+     <div class="account-twits">
+        @await Component.InvokeAsync("GetPosts")
+        </div>
+     </div>
+@section Scripts{
+    <script>
+        console.log("abc");
+        var pageNumber = 2;
+    var pageSize = 20;
+    var isLoading = false;
+
+function fetchData() {
+    if (!isLoading) {
+        isLoading = true;
+        $.ajax({
+            url: "/Home/GetPostsViewComponente",
+            method: "GET",
+            data: { _pageNumber: pageNumber, pageSize: pageSize },
+            success: function(data) {
+                if (data.length > 0) {
+                    $("#dataContainer").append(data);
+                    pageNumber++; 
+                }
+            },
+            error: function() {
+                console.error("Failed to fetch data.");
+            },
+            complete: function() {
+                isLoading = false;
+            }
+        });
+    }
+}
+       
+                  fetchData(); 
+        homePage.addEventListener('scroll', function () {
+         console.log("hiii")
+        if (homePage.scrollTop - homePage.scrollHeight == 0) {
+        
+            
+        }});
+
+
+    </script>
+}
+
+
+
+
+
+
+    @*<div class="twit-container">
         <div class="twit-header">
             <div class="account-info">
                 <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
@@ -123,11 +180,11 @@
             <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
             <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
             <pre class="code" style="direction: ltr;">
-consle.log(fdsf)
-if(int i = 0 ; i < 10; i++)
-{
+                consle.log(fdsf)
+                if(int i = 0 ; i < 10; i++)
+                {
 
-}</pre>
+                }</pre>
         </div>
         <div class="twit-intraction-buttons">
             <button class="like">
@@ -141,7 +198,7 @@ if(int i = 0 ; i < 10; i++)
             <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
             <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
         </div>
-    </div>
+    </div>*@
 
     <button class="btn btn-primary btn-hover d-block">المزيد</button>
 </div>

@@ -34,8 +34,8 @@
                     <div class="navigation" style="margin-top:40px">
                         <a class="nav " asp-controller="Home" asp-action="Index" > <img src="~/lib/assites/Icons/home.svg" alt=""> الرئيسية</a>
                         <a class="nav" asp-controller="Profile" asp-action="Index" > <img src="~/lib/assites/Icons/profile.svg" alt=""> الملف الشخصي</a>
-                        <a class="nav" asp-controller="Notification" asp-action="notification" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>
-                        <a class="nav" asp-controller="Bookmarks" asp-action="bookmarks" > <img src="~/lib/assites/Icons/Bookmark.svg" alt=""> المحفوظات</a>
+                        @*<a class="nav" asp-controller="Notification" asp-action="notification" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>
+                        <a class="nav" asp-controller="Bookmarks" asp-action="bookmarks" > <img src="~/lib/assites/Icons/Bookmark.svg" alt=""> المحفوظات</a>*@
                         <a class="nav logout" asp-controller="Accounts" asp-action="Logout"> <img src="~/lib/assites/Icons/Logout.svg" alt=""> تسجيل الخروج</a>
                     </div>
                 </div>
@@ -45,12 +45,7 @@
                     @RenderBody()
 
                     </main>  
-                    <div class="more-popup-shadow">
-                                    <div class="popup-more-option">
-                                    <button class="btn btn-secondary btn-hover">مشاركة</button>
-                                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
-                                    </div>
-                   </div>
+                    
                 </div>
 
                 <div class="left-sidebar">
@@ -69,12 +64,12 @@
                         </div>
                             <div class="flex" style="justify-content: center; gap: 20px; margin-top: 10px; align-items: end;">
                                 <div class="followers flex column align-center">
-                                    <p style="font-size: 17px; font-weight: bold;">1223</p>
-                                    <small style="margin-top: -5px; display: block;">Followers</small>
+                                    <p style="font-size: 17px; font-weight: bold;">@ViewBag.followMe</p>
+                                    <small style="margin-top: -5px; display: block;">متابِعا</small>
                                 </div>
                                 <div class="following flex column align-center">
-                                    <p style="font-size: 17px; font-weight: bold;">1223</p>
-                                    <small style="margin-top: -5px; display: block;">Following</small>
+                                    <p style="font-size: 17px; font-weight: bold;">@ViewBag.followHim</p>
+                                    <small style="margin-top: -5px; display: block;">متابَعا</small>
                                 </div>
                             </div>
                     </div>
@@ -83,12 +78,12 @@
         </div>
     </div>
 
+    <script src="~/js/main.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
-    <script src="~/js/main.js"></script>
-
+    
 </body>
 </html>

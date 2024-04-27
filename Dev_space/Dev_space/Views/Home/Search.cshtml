@@ -9,6 +9,9 @@
     <input id="wordSearch" value="@ViewBag.wordSearch"  hidden/>
     <div class="person-result">
         <h3>الأشخاص</h3>
+        @if(Model !=null)
+        {
+
         @foreach (var user in Model)
         {
             <div class="personal-card">
@@ -43,6 +46,8 @@
                 }
                 
             </div>
+        }
+
         }
     </div>
 </div>

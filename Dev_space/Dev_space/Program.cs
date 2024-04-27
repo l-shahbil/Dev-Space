@@ -22,6 +22,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
 builder.Services.ConfigureApplicationCookie(option =>
     option.LoginPath = "/Accounts/Login"
 );
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(MainRepository<>));
 
 var app = builder.Build();

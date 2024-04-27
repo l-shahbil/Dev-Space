@@ -1,19 +1,13 @@
 @inject UserManager<ApplicationUser> userManger
 @model RegisterVeiwModel
-@{
-}
+
 
 <script>
     document.querySelector(".navigation > a:nth-child(2)").classList.add("active-bar");
 </script>
 
 <div class="profile-page" style="padding-bottom:200px">
-    <div class="more-popup-shadow">
-        <div class="popup-more-option">
-        <button class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite')">تعديل</button>
-        <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
-        </div>
-    </div>
+    
 
     @*twitt edit popup*@
     <div class="twit-edite">
@@ -81,8 +75,8 @@
                 
                 </div>
             <div class="account-following-info">
-                <p class="following">1200 <span>متابِعا</span></p>
-                <p class="following">34 <span>متابَعا</span></p>
+                <p class="following">@ViewBag.followMe <span>متابِعا</span></p>
+                <p class="following">@ViewBag.followHim <span>متابَعا</span></p>
             </div>
         </div>
         <hr>
@@ -124,7 +118,7 @@
                             }
                         }
                     </div>
-                    <div class="twit-intraction-buttons">
+                   @* <div class="twit-intraction-buttons">
                         <button class="like">
                             <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
                             <p class="like-amount">215 اعجاب</p>
@@ -135,14 +129,14 @@
                         </button>
                         <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
                         <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
-                    </div>
+                    </div>*@
                 </div>
             }
     </div>
 
     <div class="more-popup-shadow">
         <div class="popup-more-option">
-                <a id="EditButton" class="btn btn-secondary btn-hover">تعديل</a>
+                <button class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite')">تعديل</button>
                 <a id="ShareButton" class="btn btn-secondary btn-hover">مشاركة</a>
                 <a id="DeleteButton" class="btn btn-primary danger btn-hover">حذف المنشور</a>
                 <button  class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
@@ -150,14 +144,14 @@
     </div>
 
     <div class="edit-popup-shadow info">
-        <form class="popup-edit" method="post" enctype="multipart/form-data" asp-action="UpdateUserData">
+        <form asp-action="UpdateUserData" asp-controller="Profile" class="popup-edit"  method="post" enctype="multipart/form-data" >
             <input asp-for="ChangeUserData.Id"  value="@((await userManger.GetUserAsync(User)).Id)" hidden/>
             <div class="edit-header">
                 <div>
                     <div onclick="showAndHide('edit-popup-shadow')" style="cursor: pointer;" class="image-container"><img src="~/lib/assites/Icons/close-x-icone.svg" alt=""></div>
                     <h2>تعديل الملف الشخصي</h2>
                 </div>
-                <button class="btn btn-primary btn-hover">حفظ</button>
+                    <input type="submit" class="btn btn-primary btn-hover" value="حفظ"/>
             </div>
             <div class="edit-images">
 
@@ -178,23 +172,26 @@
                     <div>
                         <small>الاسم</small>
                         <div class="names-input-boxs">
-                            <input asp-for="ChangeUserData.Name" type="text" class="input" placeholder="الاسم" required value="@((await userManger.GetUserAsync(User)).Name)">
+                            <input asp-for="ChangeUserData.Name" type="text" class="input" placeholder="الاسم" value="@((await userManger.GetUserAsync(User)).Name)">
+                            
                         </div>
                     </div>
                     <div>
                         <small>اسم المستخدم</small>
                         <input asp-for="ChangeUserData.UserName" type="text" class="input" placeholder="اسم المستخدم" value="@((await userManger.GetUserAsync(User)).UserName)">
+                        
                     </div>
                     <div>
                         
                         <small>النبذه الشخصية</small>
-                        <textarea cols="30" rows="5" placeholder="النبذه الشخصية"></textarea>
+                        <input type="text" style="width:100%;height:80px;" asp-for="ChangeUserData.Discription" cols="30" rows="5" placeholder="النبذه الشخصية"  value="@((await userManger.GetUserAsync(User)).Description)"/>
+                       
                     </div>
                 </div>
                 <div class="social-accounts-links">
                     <h4>روابط البرامج الاخرى</h4>
-                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div><input asp-for="ChangeUserData.LinkInstagram" type="text" placeholder="هنا ضع الرابط" value="" id="inputLinkInstgram"/></div>
-                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div><input asp-for="ChangeUserData.LinkTwitter" type="text" placeholder="هنا ضع الرابط" value="" id="inputLinkTwitter"/></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div><input asp-for="ChangeUserData.LinkInstagram" type="text" placeholder="هنا ضع الرابط"  id="inputLinkInstgram"/></div>
+                    <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div><input asp-for="ChangeUserData.LinkTwitter" type="text" placeholder="هنا ضع الرابط" id="inputLinkTwitter"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div><input asp-for="ChangeUserData.LinkBehance" type="text" placeholder="هنا ضع الرابط" id="inputLinkBehance"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/github.svg" alt=""></div><input asp-for="ChangeUserData.LinkGithub" type="text" placeholder="هنا ضع الرابط" id="inputLinkGithub"/></div>
                 </div>

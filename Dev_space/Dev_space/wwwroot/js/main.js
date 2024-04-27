@@ -21,7 +21,8 @@ function showAndHide(eleClass) {
 
 }
 
-//for button delete and update
+//for button delete and update 
+
 function getPostId(id) {
     console.log(id);
     document.getElementById('DeleteButton').href = `/Home/DeletePost?id=${id}`;
@@ -146,6 +147,7 @@ function opne(selector) {
     input.click();
 }
 
+
 function updateHomePage() {
     setTimeout(function () {
         button.classList.add('down');
@@ -154,3 +156,4 @@ function updateHomePage() {
 }
 
 document.onload(updateHomePage())
+

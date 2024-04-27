@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Dev_space.Controllers
 {
@@ -34,17 +35,20 @@ namespace Dev_space.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManger.GetUserAsync(User);
+    
             var listLink = _repositoryLink.GetAll().Where(u => u.UserId== user.Id);
             ViewBag.MyLink = listLink;
 
-            var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user);
+            var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user).OrderByDescending(p => p.Date);
             ViewBag.listPost = listPost;
 
-            var listFollowMe = _repoUser.FindAllItem("friends").Where(u => u.Id == user.Id);
-            ViewBag.followMe = listFollowMe.Count();
+            //This line is to count the number of people you have followed
+            var listFollowHim = _repoUser.FindAllItem("friends").FirstOrDefault(u => u.Id == user.Id);
+            ViewBag.followHim = listFollowHim.friends.Count();
 
-            //var listFollowers = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
-            //ViewBag.followers = listFollowers.Count();
+            //This line is to count the number of people who followed me
+            var listFollowMe = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
+            ViewBag.followMe = listFollowMe.Count();
 
             return View();
         }
@@ -67,43 +71,75 @@ namespace Dev_space.Controllers
 
             if (ModelState.IsValid)
             {
+                var user = await _userManger.FindByIdAsync(model.ChangeUserData.Id);
                 string ImgProfileName = string.Empty;
                 string ImgCoverName = string.Empty;
-                
 
-                if(model.ChangeUserData.ImgProfile != null)
+
+                if (model.ChangeUserData.ImgProfile != null)
                 {
                     string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
-                    ImgProfileName = model.ChangeUserData.ImgProfile.FileName;
+                    string fileExtention = Path.GetExtension(model.ChangeUserData.ImgProfile.FileName);
+                    ImgProfileName = $"{Guid.NewGuid()}{fileExtention}";
                     string fullPath = Path.Combine(MyUplod, ImgProfileName);
                     model.ChangeUserData.ImgProfile.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                    user.ImgUser = ImgProfileName;
                     
                 }
-                if(model.ChangeUserData.ImgCover != null)
+                if (model.ChangeUserData.ImgCover != null)
                 {
                     string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
-                    ImgCoverName = model.ChangeUserData.ImgCover.FileName;
+                    string fileExtention = Path.GetExtension(model.ChangeUserData.ImgCover.FileName);
+                    ImgCoverName = $"{Guid.NewGuid()}{fileExtention}";
                     string fullPath = Path.Combine(MyUplod, ImgCoverName);
                     model.ChangeUserData.ImgCover.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                    user.CoverImgUser = ImgCoverName;
                 }
-                var user = await _userManger.FindByIdAsync(model.ChangeUserData.Id);
+
+                //In order to delete the previous image
+                string imagePath = Path.Combine(_host.WebRootPath, "Images\\Personal", user.ImgUser);
+                string CoverPath = Path.Combine(_host.WebRootPath, "Images\\Personal", user.CoverImgUser);
+
+
                 user.Id = model.ChangeUserData.Id;
                 user.Name = model.ChangeUserData.Name;
                 user.UserName = model.ChangeUserData.UserName;
-                user.ImgUser = ImgProfileName;
-                user.CoverImgUser = ImgCoverName;
+                
                 user.Description = model.ChangeUserData.Discription;
+
               
-                
-                
-                var result = await _userManger.UpdateAsync(user);
+            
+
+                    var result = await _userManger.UpdateAsync(user);
                 if (result.Succeeded)
                 {
+                    //In order to delete the previous image
+
+                    //if (user.ImgUser != null)
+                    //{
+                    //    if (System.IO.File.Exists(imagePath))
+                    //    {
+                    //        System.IO.File.Delete(imagePath);
+                    //    }
+
+                    //}
+                    //else if (user.CoverImgUser != null)
+                    //{
+                    //    if (System.IO.File.Exists(imagePath))
+                    //    {
+                    //        System.IO.File.Delete(imagePath);
+                    //    }
+
+                    //}
+
                     var listLink = _repositoryLink.GetAll().Where(u => u.UserId == user.Id);
                     foreach(var link in listLink)
                     {
                         if(link.Type == 0 && model.ChangeUserData.LinkTwitter !=null)
                         {
+
                             link.URL = model.ChangeUserData.LinkTwitter;
 
                         }
@@ -131,6 +167,9 @@ namespace Dev_space.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePasswrod(RegisterVeiwModel model)
         {
+            ModelState.Remove("Users");
+            ModelState.Remove("NewRegister");
+            ModelState.Remove("ChangeUserData");
             if (ModelState.IsValid)
             {
 
