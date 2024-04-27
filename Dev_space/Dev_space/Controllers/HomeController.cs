@@ -4,6 +4,7 @@ using Dev_space.Repository.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -36,7 +37,10 @@ namespace Dev_space.Controllers
         public async Task<IActionResult> Index()
 
         {
+            
             var user = await _userManger.GetUserAsync(User);
+           
+
             //This line is to count the number of people you have followed
             var listFollowHim = _repoUser.FindAllItem("friends").FirstOrDefault(u => u.Id == user.Id);
             ViewBag.followHim = listFollowHim.friends.Count();
@@ -46,6 +50,14 @@ namespace Dev_space.Controllers
             ViewBag.followMe = listFollowMe.Count();
             return View();
         }
+
+        public IActionResult GetPostsViewComponente(int _pageNumber , int _pageSize = 20)
+        {
+
+            return ViewComponent("GetPosts", new { pageNumber = _pageNumber });
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Post(Post p)

@@ -9,7 +9,7 @@
 
 
 <div class="home-page" id="home" style="padding-bottom: 150px">
-                        
+                      
     <div class="think-container">
         <p>في ماذا تفكر؟</p>
         <hr>
@@ -43,11 +43,69 @@
                     </div>
                 </form>
         </div>
+        <div class="more-popup-shadow">
+                                    <div class="popup-more-option">
+                                    <button class="btn btn-secondary btn-hover">مشاركة</button>
+                                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
+                                    </div>
+                   </div>
     </div>
     
     <button class="btn btn-primary btn-hover d-block update-home" id="home-update-btn" onclick="afterDelay(this)">تحديث الخلاصة</button>
 
-    <div class="twit-container">
+    <div id="dataContainer">
+     <div class="account-twits">
+        @await Component.InvokeAsync("GetPosts")
+        </div>
+     </div>
+@section Scripts{
+    <script>
+        console.log("abc");
+        var pageNumber = 2;
+    var pageSize = 20;
+    var isLoading = false;
+
+function fetchData() {
+    if (!isLoading) {
+        isLoading = true;
+        $.ajax({
+            url: "/Home/GetPostsViewComponente",
+            method: "GET",
+            data: { _pageNumber: pageNumber, pageSize: pageSize },
+            success: function(data) {
+                if (data.length > 0) {
+                    $("#dataContainer").append(data);
+                    pageNumber++; 
+                }
+            },
+            error: function() {
+                console.error("Failed to fetch data.");
+            },
+            complete: function() {
+                isLoading = false;
+            }
+        });
+    }
+}
+       
+                  fetchData(); 
+        homePage.addEventListener('scroll', function () {
+         console.log("hiii")
+        if (homePage.scrollTop - homePage.scrollHeight == 0) {
+        
+            
+        }});
+
+
+    </script>
+}
+
+
+
+
+
+
+    @*<div class="twit-container">
         <div class="twit-header">
             <div class="account-info">
                 <div class="image-container"><img src="~/lib/assites/images/Profile.png" alt=""></div>
@@ -121,11 +179,11 @@
             <p class="content">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
             <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
             <pre class="code" style="direction: ltr;">
-consle.log(fdsf)
-if(int i = 0 ; i < 10; i++)
-{
+                consle.log(fdsf)
+                if(int i = 0 ; i < 10; i++)
+                {
 
-}</pre>
+                }</pre>
         </div>
         <div class="twit-intraction-buttons">
             <button class="like">
@@ -141,5 +199,5 @@ if(int i = 0 ; i < 10; i++)
         </div>
     </div>
 
-    <button class="btn btn-primary btn-hover d-block">المزيد</button>
+    <button class="btn btn-primary btn-hover d-block">المزيد</button>*@
 </div>

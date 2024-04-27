@@ -3,7 +3,7 @@
     "",
     "\\Dev_space",
     "\\Dev_space\\Dev_space",
-    "\\Dev_space\\Dev_space\\Models",
+    "\\Dev_space\\Dev_space\\Data",
     "\\Dev_space\\Dev_space\\Views",
     "\\Dev_space\\Dev_space\\Views\\Accounts",
     "\\Dev_space\\Dev_space\\Views\\Profile",
@@ -11,6 +11,6 @@
     "\\Dev_space\\Dev_space\\wwwroot",
     "\\Dev_space\\Dev_space\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Dev_space\\Dev_space\\wwwroot\\js\\main.js",
+  "SelectedNode": "\\Dev_space\\Dev_space\\Data\\AppDbContext.cs",
   "PreviewInSolutionExplorer": false
 }
