@@ -129,6 +129,7 @@ function openImageDailog(inputImageClass) {
         span.textContent = "إضافة صورة";
     }
 }
+
 function changeStatusToHover(icone) {
     if (icone.src.includes("heart")) {
         if (icone.src.includes("Hover"))
@@ -147,5 +148,12 @@ function opne(selector) {
 }
 
 
+function updateHomePage() {
+    setTimeout(function () {
+        button.classList.add('down');
+        updateHomePage();
+    }, 18000)
+}
 
+document.onload(updateHomePage())
 
