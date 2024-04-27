@@ -21,7 +21,8 @@ function showAndHide(eleClass) {
 
 }
 
-//for button delete and update
+//for button delete and update 
+
 function getPostId(id) {
     console.log(id);
     document.getElementById('DeleteButton').href = `/Home/DeletePost?id=${id}`;
@@ -148,25 +149,3 @@ function opne(selector) {
 
 
 
-homePage.addEventListener('scroll', function () {
-    if (homePage.scrollTop === 0) {
-        isScroll = false;
-        setTimeout(function () {
-            dropButton();
-        }, 60000);
-    }
-    else {
-        isScroll = true;
-        button.classList.remove('down');
-    }
-});
-
-function dropButton() {
-    if (!isScroll) {
-        button.classList.add('down');
-    }
-}
-
-setTimeout(function () {
-    dropButton();
-}, 60000)
