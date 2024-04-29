@@ -18,7 +18,6 @@ function showAndHide(eleClass) {
     let element;
     element = document.querySelector(`.${eleClass}`);
     element.classList.toggle("active");
-
 }
 
 //for button delete and update 
@@ -152,7 +151,7 @@ function updateHomePage() {
     setTimeout(function () {
         button.classList.add('down');
         updateHomePage();
-    }, 18000)
+    }, 1800000)
 }
 
 document.onload(updateHomePage())
