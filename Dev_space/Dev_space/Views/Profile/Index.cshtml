@@ -17,9 +17,11 @@
                 <hr>
                 <div class="popup-input-box">
                     <div class="image-container"><img src="assites/images/Profile.png" alt="Profile"></div>
-                    <textarea name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
-                    <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود" style="display: block;"></textarea>
-                    <div class="image-container" id="new-twit-image-container"><img src="" class="image-of-new-twit" alt=""></div>
+                    <div style="display: grid; grid-template-columns:1fr 1fr; width:90%; gap:10px">
+                        <textarea style="width: 100%; height: 100%" name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
+                        <div style="overflow:hidden; background-color: gray; width: 100%; height: 150px; border-radius:10px" class="image-container"><img style="border-radius: 0px" src="~/Images/Personal/1685461194701.jpg" /></div>
+                    </div>
+                    <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود" style="direction:ltr; display: block;"></textarea>
                 </div>
                 <div class="action-buttons" style="margin-top: 16px;"> 
                     <input type="submit" class="btn btn-primary" value="نشر">
@@ -136,9 +138,9 @@
 
     <div class="more-popup-shadow">
         <div class="popup-more-option">
-                <button class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite')">تعديل</button>
-                <a id="ShareButton" class="btn btn-secondary btn-hover">مشاركة</a>
-                <a id="DeleteButton" class="btn btn-primary danger btn-hover">حذف المنشور</a>
+                <button class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite'), showAndHide('more-popup-shadow')">تعديل</button>
+                <a style="text-align:center" id="ShareButton" class="btn btn-secondary btn-hover">مشاركة</a>
+                <a style="text-align:center" id="DeleteButton" class="btn btn-primary danger btn-hover">حذف المنشور</a>
                 <button  class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
         </div>
     </div>
@@ -189,7 +191,7 @@
                     </div>
                 </div>
                 <div class="social-accounts-links">
-                    <h4>روابط البرامج الاخرى</h4>
+                    <h4>روابط البرامج الاخرى</h4>8
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div><input asp-for="ChangeUserData.LinkInstagram" type="text" placeholder="هنا ضع الرابط"  id="inputLinkInstgram"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div><input asp-for="ChangeUserData.LinkTwitter" type="text" placeholder="هنا ضع الرابط" id="inputLinkTwitter"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div><input asp-for="ChangeUserData.LinkBehance" type="text" placeholder="هنا ضع الرابط" id="inputLinkBehance"/></div>
