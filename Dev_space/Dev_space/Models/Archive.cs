@@ -6,12 +6,14 @@ namespace Dev_space.Models
 {
     public class Archive
     {
-        [Key]
         public string Id { get; set; }
+        public DateTime dateAdded { get; set; }
+
         //relationships
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
         [ForeignKey("PostID")]
+        [Required]
         public Post Post { get; set; }
 
 

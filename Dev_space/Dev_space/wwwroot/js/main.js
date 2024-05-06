@@ -1,3 +1,4 @@
+let displayButtonMore = 0;
 let isScroll = false;
 let homePage = document.querySelector('.center-side');
 let button = document.querySelector('#home-update-btn');
@@ -18,38 +19,91 @@ function showAndHide(eleClass) {
     let element;
     element = document.querySelector(`.${eleClass}`);
     element.classList.toggle("active");
+    if (eleClass == 'code-box') {
+        element.value = "";
+    }
 }
 
-//for button delete and update 
+//for button delete 
+function DeletePost(id) {
+    //for Delete
+    document.getElementById('DeleteButton').href = `/Post/DeletePost?id=${id}`; 
+}
+function EditPost(number) {
+    //for Update
+    let text = document.getElementById(`post-text${number}`);
+    let code = document.getElementById(`post-code${number}`);
+    let img = document.getElementById(`post-img${number}`);
 
-function getPostId(id) {
-    console.log(id);
-    document.getElementById('DeleteButton').href = `/Home/DeletePost?id=${id}`;
+    document.getElementById('input-edit-twitt-code').value = "";
+    document.getElementById('input-edit-twitt-text').value = "";
+    document.getElementById('edit-twitt-img').src = "";
+
+    document.getElementById('input-edit-twitt-id').value = document.getElementById(`id-post${number}`).value;
+    if (text) {
+
+        document.getElementById('input-edit-twitt-text').value = text.innerHTML;
+    }
+    if (code) {
+        document.getElementById('input-edit-twitt-code').value = code.innerHTML;
+    }
+    if (img) {
+        document.getElementById('edit-twitt-img').src = img.src;
+
+    }
 }
 
 //for follow 
 function follow(element,userName, pageName, wordSearch) {
         //This code for follow from the search page
         if (wordSearch != '') {
-            window.location.href = `/Home/Follow?userName=${userName}&pageName=${pageName}&wordSearch=${wordSearch}`;
+            window.location.href = `/Accounts/Follow?userName=${userName}&pageName=${pageName}&wordSearch=${wordSearch}`;
         }
         //This code for follow from the profileFriend page
         else {
-            window.location.href = `/Home/Follow?userName=${userName}&pageName=${pageName}&wordSearch=''`;
+            window.location.href = `/Accounts/Follow?userName=${userName}&pageName=${pageName}&wordSearch=''`;
         }
 }
 //for Unfollow
 function unFollow(element, userName, pageName, wordSearch) {
     //This code for unfollow from the search page
     if (wordSearch != '') {
-        window.location.href = `/Home/unFollow?userName=${userName}&pageName=${pageName}&wordSearch=${wordSearch}`;
+        window.location.href = `/Accounts/unFollow?userName=${userName}&pageName=${pageName}&wordSearch=${wordSearch}`;
     }
     //This code for unfollow from the profileFriend page
     else {
-        window.location.href = `/Home/unFollow?userName=${userName}&pageName=${pageName}&wordSearch=''`;
+        window.location.href = `/Accounts/unFollow?userName=${userName}&pageName=${pageName}&wordSearch=''`;
     }
 }
+function AddBookMark(icon, postId, pageAction, userNameFriend) {
+    //Add BookMark
+    //userFriend in order to the user added bookMark from the profileFriend. the profileFriend controller accept userName for friend
+    icon.src = "~/lib/assites/Icons/outline-bookmark.svg";
+    window.location.href = `/Bookmarks/addBookMarks?postID=${postId}&pageAction=${pageAction}&userFriend=${userNameFriend}`;
 
+}
+function removeBookMark(icon, archiveId, pageAction, userNameFriend) {
+    //Remove BookMark
+    //userFriend in order to the user remove bookMark from the profileFriend. the profileFriend controller accept userName for friend
+    icon.src = "~/lib/assites/Icons/Hover-outline-bookmark.svg";
+    window.location.href = `/Bookmarks/DeleteBookMarks?archiveID=${archiveId}&pageAction=${pageAction}&userFriend=${userNameFriend}`;
+
+}
+//for Like
+function like(icon, postId, pageAction, userNameFriend) {
+    //userFriend in order to the user liked from the profileFriend. the profileFriend controller accept userName for friend
+    icon.src = "~/lib/assites/Icons/Hover-outline-heart.svg";
+    window.location.href = `/Accounts/Like?postID=${postId}&pageAction=${pageAction}&userFriend=${userNameFriend}`;
+
+}
+//for dislike
+function disLike(icon, likeId, pageAction, userNameFriend) {
+   //userFriend in order to the user dislike from the profileFriend. the profileFriend controller accept userName for friend
+    icon.src = "~/lib/assites/Icons/outline-heart.svg";
+    window.location.href = `/Accounts/DisLike?likeId=${likeId}&pageAction=${pageAction}&userFriend=${userNameFriend}`;
+
+
+}
 function copyCode(eleClass) {
     const copyBtn = document.querySelector(".copy-code-btn");
     const textToCopy = document.querySelector(`.${eleClass}`).textContent;
@@ -129,17 +183,8 @@ function openImageDailog(inputImageClass) {
     }
 }
 
-function changeStatusToHover(icone) {
-    if (icone.src.includes("heart")) {
-        if (icone.src.includes("Hover"))
-            icone.src = "assites/Icons/outline-heart.svg";
-        else icone.src = "assites/Icons/Hover-outline-heart.svg";
-    } else {
-        if (icone.src.includes("Hover"))
-            icone.src = "assites/Icons/outline-bookmark.svg";
-        else icone.src = "assites/Icons/Hover-outline-bookmark.svg";
-    }
-}
+
+
 
 function opne(selector) {
     let input = document.getElementById(`${selector}`);
@@ -154,5 +199,4 @@ function updateHomePage() {
     }, 1800000)
 }
 
-document.onload(updateHomePage())
 

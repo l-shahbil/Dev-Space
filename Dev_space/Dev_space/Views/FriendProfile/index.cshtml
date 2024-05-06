@@ -1,5 +1,9 @@
 ﻿@inject UserManager<ApplicationUser> userManger
 @model ApplicationUser
+
+@{
+    var user = await userManger.GetUserAsync(User);
+}
 <div class="frind-profile-page">
 
                 <div class="page-header" style="justify-content: start;">
@@ -63,20 +67,20 @@
                 
                 </div>
                         <div class="account-following-info">
-                            <p class="following">1200 <span>متابِعا</span></p>
-                            <p class="following">34 <span>متابَعا</span></p>
+                            <p class="following">@ViewBag.followMeFriendProfile <span>متابِعا</span></p>
+                            <p class="following">@ViewBag.followHimFriendProfile <span>متابَعا</span></p>
                         </div>
                     </div>
                     <hr>
                 </div>
-                <div class="account-twits">
+                <div class="account-twits" style="padding-bottom: 100px">
                     @foreach (var post in ViewBag.listPost )
             {
                 
                 <div class="twit-container">
                     <div class="twit-header">
                 <div class="account-info">
-                    <div class="image-container"><img src="~/Images/Personal/@Model.ImgUser" alt=""></div>
+                    <div class="image-container pro"><img src="~/Images/Personal/@Model.ImgUser" alt=""></div>
                     <div class="user-info">
                         <p class="account-name">@Model.Name</p>
                         <small class="account-username">@Model.UserName</small>
@@ -93,8 +97,10 @@
                     {
                         @foreach (var code in post.Codes)
                         {
-                            <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
-                            <pre class="code" style="direction: ltr;">@code.CodeText</pre>
+                            <div style="position: relative">
+                                <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                                <pre class="code" style="direction: ltr;">@code.CodeText</pre>
+                            </div>
                         }
                     }
                     @if(post.Imgs != null)
@@ -109,18 +115,44 @@
                     }
                     
             </div>
-           @* <div class="twit-intraction-buttons">
-                <button class="like">
-                    <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
-                    <p class="like-amount">215 اعجاب</p>
-                </button>
+           <div class="twit-intraction-buttons">
+                @{
+                    var likeForUser = (post.likes as IEnumerable<Like>).FirstOrDefault(u => u.User == user);
+                    if (likeForUser != null)
+                    {
+                        <button class="like">
+                            <div class="image-cntainer share"><img onclick="disLike(this,'@likeForUser.Id','FriendProfile','@Model.UserName')" src="~/lib/assites/Icons/Hover-outline-heart.svg" alt=""></div>
+                        <p class="like-amount">@((post.likes as IEnumerable<Like>).Count()) اعجاب</p>
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="like">
+                            <div class="image-cntainer share"><img onclick="like(this,'@post.Id','FriendProfile','@Model.UserName')" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                        <p class="like-amount">@((post.likes as IEnumerable<Like>).Count()) اعجاب</p>
+                        </button>
+                    }
+                }
+                @*
                 <button class="comment">
                     <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
                     <p class="comment-amount">13 تعليق</p>
                 </button>
-                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
-            </div>*@
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>*@
+                    @{                         
+                        var archive  = (post.archives as IEnumerable<Archive>).FirstOrDefault(u => u.User == user);
+                        if(archive != null)
+                    {
+                        
+                        <butcton class="image-cntainer bookmark"><img onclick="removeBookMark(this,'@archive.Id','FriendProfile','@Model.UserName');" src="~/lib/assites/Icons/Hover-outline-bookmark.svg" alt=""></butcton>
+                    }
+                    else
+                    {
+                        <butcton class="image-cntainer bookmark"><img onclick="AddBookMark(this,'@post.Id','FriendProfile','@Model.UserName');" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></butcton>
+
+                    }
+                 }
+              </div>
         </div>
             }
 

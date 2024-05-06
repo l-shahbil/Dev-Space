@@ -43,11 +43,15 @@ namespace Dev_space.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PostID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("dateAdded")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -158,6 +162,7 @@ namespace Dev_space.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PostID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
@@ -511,11 +516,13 @@ namespace Dev_space.Migrations
             modelBuilder.Entity("Dev_space.Models.Archive", b =>
                 {
                     b.HasOne("Dev_space.Models.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostID");
+                        .WithMany("archives")
+                        .HasForeignKey("PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Dev_space.Models.AccountViewModels.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("archives")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -577,7 +584,9 @@ namespace Dev_space.Migrations
                 {
                     b.HasOne("Dev_space.Models.Post", "post")
                         .WithMany("likes")
-                        .HasForeignKey("PostID");
+                        .HasForeignKey("PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Dev_space.Models.AccountViewModels.ApplicationUser", "User")
                         .WithMany("likes")
@@ -680,6 +689,8 @@ namespace Dev_space.Migrations
 
                     b.Navigation("Imgs");
 
+                    b.Navigation("archives");
+
                     b.Navigation("commints");
 
                     b.Navigation("likes");
@@ -687,6 +698,8 @@ namespace Dev_space.Migrations
 
             modelBuilder.Entity("Dev_space.Models.AccountViewModels.ApplicationUser", b =>
                 {
+                    b.Navigation("archives");
+
                     b.Navigation("commints");
 
                     b.Navigation("friends");

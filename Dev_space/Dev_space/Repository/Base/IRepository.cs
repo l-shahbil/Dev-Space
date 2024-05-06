@@ -16,9 +16,6 @@ namespace Dev_space.Repository.Base
         void RemoveItem(T item);
         void UpdateItem (T item);
 
-        void AddList(IEnumerable<T> items);
-        void RemoveList(IEnumerable<T> items);
-        void UpdateList(IEnumerable<T> items);
 
     }
 }

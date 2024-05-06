@@ -14,9 +14,8 @@ namespace Dev_space.Models
         [ForeignKey("UserId")]
         public ApplicationUser? User { get; set; }
 
-
-
         [ForeignKey("PostID")]
+        [Required]
         public Post? post { get; set; }
 
     }

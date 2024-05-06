@@ -12,21 +12,19 @@ using Microsoft.AspNetCore.Hosting;
 namespace Dev_space.Controllers
 {
     [Authorize]
-    public class ProfileController : Controller
+    public class ProfileController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManger;
         private IRepository<Link> _repositoryLink;
-        private  AppDbContext _context;
         private  IHostingEnvironment _host;
         private  IRepository<Post> _repoPost;
         private IRepository<Friend> _repoFriend;
         private IRepository<ApplicationUser> _repoUser;
 
-        public ProfileController(UserManager<ApplicationUser>userManger,IRepository<Link> repositoryLink,AppDbContext context, IHostingEnvironment host,IRepository<Post>repoPost,IRepository<Friend> repoFriend,IRepository<ApplicationUser> repoUser)
+        public ProfileController(UserManager<ApplicationUser>userManager,IRepository<Link> repositoryLink, IHostingEnvironment host,IRepository<Post>repoPost,IRepository<Friend> repoFriend,IRepository<ApplicationUser> repoUser) : base(repoUser, repoFriend, userManager)
         {
-            _userManger = userManger;
+            _userManger = userManager;
             _repositoryLink = repositoryLink;
-            _context = context;
             _host = host;
             _repoPost = repoPost;
             _repoFriend = repoFriend;
@@ -39,17 +37,11 @@ namespace Dev_space.Controllers
             var listLink = _repositoryLink.GetAll().Where(u => u.UserId== user.Id);
             ViewBag.MyLink = listLink;
 
-            var listPost = _repoPost.FindAllItem("Codes", "Imgs").Where(u => u.User == user).OrderByDescending(p => p.Date);
+            var listPost = _repoPost.FindAllItem("Codes", "Imgs", "archives", "likes").Where(u => u.User == user).OrderByDescending(p => p.Date);
             ViewBag.listPost = listPost;
 
-            //This line is to count the number of people you have followed
-            var listFollowHim = _repoUser.FindAllItem("friends").FirstOrDefault(u => u.Id == user.Id);
-            ViewBag.followHim = listFollowHim.friends.Count();
 
-            //This line is to count the number of people who followed me
-            var listFollowMe = _repoFriend.GetAll().Where(u => u.IdFriend == user.Id);
-            ViewBag.followMe = listFollowMe.Count();
-
+            await calculateFriends();
             return View();
         }
         [HttpPost]
@@ -72,67 +64,85 @@ namespace Dev_space.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManger.FindByIdAsync(model.ChangeUserData.Id);
+                if(user != null)
+                {
+
                 string ImgProfileName = string.Empty;
                 string ImgCoverName = string.Empty;
 
 
                 if (model.ChangeUserData.ImgProfile != null)
                 {
-                    string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
-                    string fileExtention = Path.GetExtension(model.ChangeUserData.ImgProfile.FileName);
-                    ImgProfileName = $"{Guid.NewGuid()}{fileExtention}";
-                    string fullPath = Path.Combine(MyUplod, ImgProfileName);
-                    model.ChangeUserData.ImgProfile.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    if(string.IsNullOrEmpty(user.ImgUser))
+                    {
 
-                    user.ImgUser = ImgProfileName;
+                        string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
+                        string fileExtention = Path.GetExtension(model.ChangeUserData.ImgProfile.FileName);
+                        ImgProfileName = $"{Guid.NewGuid()}{fileExtention}";
+                        string fullPath = Path.Combine(MyUplod, ImgProfileName);
+                        model.ChangeUserData.ImgProfile.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                        user.ImgUser = ImgProfileName;
+                    }
+                    else
+                    {
+                        string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
+                        string fileExtention = Path.GetExtension(model.ChangeUserData.ImgProfile.FileName);
+                        ImgProfileName = $"{Guid.NewGuid()}{fileExtention}";
+                        string fullPath = Path.Combine(MyUplod, ImgProfileName);
+                        model.ChangeUserData.ImgProfile.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                        //for delete old img
+                        string oldPath = Path.Combine(MyUplod,user.ImgUser);
+                        System.IO.File.Delete(oldPath);
+
+
+                        user.ImgUser = ImgProfileName;
+                    }
                     
                 }
                 if (model.ChangeUserData.ImgCover != null)
                 {
-                    string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
-                    string fileExtention = Path.GetExtension(model.ChangeUserData.ImgCover.FileName);
-                    ImgCoverName = $"{Guid.NewGuid()}{fileExtention}";
-                    string fullPath = Path.Combine(MyUplod, ImgCoverName);
-                    model.ChangeUserData.ImgCover.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    if (string.IsNullOrEmpty(user.CoverImgUser))
+                    {
 
-                    user.CoverImgUser = ImgCoverName;
+                        string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
+                        string fileExtention = Path.GetExtension(model.ChangeUserData.ImgCover.FileName);
+                        ImgCoverName = $"{Guid.NewGuid()}{fileExtention}";
+                        string fullPath = Path.Combine(MyUplod, ImgCoverName);
+                        model.ChangeUserData.ImgCover.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                        user.CoverImgUser = ImgCoverName;
+                    }
+                    else
+                    {
+                        string MyUplod = Path.Combine(_host.WebRootPath, "Images/Personal");
+                        string fileExtention = Path.GetExtension(model.ChangeUserData.ImgCover.FileName);
+                        ImgCoverName = $"{Guid.NewGuid()}{fileExtention}";
+                        string fullPath = Path.Combine(MyUplod, ImgCoverName);
+                        model.ChangeUserData.ImgCover.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                        //for delete old img
+                        string oldPath = Path.Combine(MyUplod, user.CoverImgUser);
+                        System.IO.File.Delete(oldPath);
+
+                        user.CoverImgUser = ImgCoverName;
+                    }
                 }
 
-                //In order to delete the previous image
-                string imagePath = Path.Combine(_host.WebRootPath, "Images\\Personal", user.ImgUser);
-                string CoverPath = Path.Combine(_host.WebRootPath, "Images\\Personal", user.CoverImgUser);
 
 
-                user.Id = model.ChangeUserData.Id;
                 user.Name = model.ChangeUserData.Name;
                 user.UserName = model.ChangeUserData.UserName;
-                
                 user.Description = model.ChangeUserData.Discription;
 
               
             
 
-                    var result = await _userManger.UpdateAsync(user);
+                 var result = await _userManger.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    //In order to delete the previous image
-
-                    //if (user.ImgUser != null)
-                    //{
-                    //    if (System.IO.File.Exists(imagePath))
-                    //    {
-                    //        System.IO.File.Delete(imagePath);
-                    //    }
-
-                    //}
-                    //else if (user.CoverImgUser != null)
-                    //{
-                    //    if (System.IO.File.Exists(imagePath))
-                    //    {
-                    //        System.IO.File.Delete(imagePath);
-                    //    }
-
-                    //}
+                    
 
                     var listLink = _repositoryLink.GetAll().Where(u => u.UserId == user.Id);
                     foreach(var link in listLink)
@@ -160,6 +170,7 @@ namespace Dev_space.Controllers
                     }
                 }
 
+                }
             }
             return RedirectToAction("Index");
         }

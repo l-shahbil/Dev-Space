@@ -20,6 +20,8 @@ namespace Dev_space.Models.AccountViewModels
         public string Name { get; set; }
         [Required (ErrorMessageResourceType = typeof(ResourceData),ErrorMessageResourceName = "UserName")]
         [RegularExpression(@"^[a-zA-Z0-9_]*$",ErrorMessageResourceType = typeof (ResourceData), ErrorMessageResourceName ="RigsterUserNameError")]
+        [MinLength(3, ErrorMessageResourceType = typeof(ResourceData), ErrorMessageResourceName = "MinUserName")]
+
         public string UserName { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(ResourceData), ErrorMessageResourceName = "roleName")]

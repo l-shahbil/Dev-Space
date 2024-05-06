@@ -48,20 +48,9 @@ namespace Dev_space.Repository
             context.SaveChanges();
         }
 
-        void IRepository<T>.AddList(IEnumerable<T> items)
-        {
-            context.Set<T>().AddRange(items);
-            context.SaveChanges();
-        }
         void IRepository<T>.RemoveItem(T item)
         {
             context.Set<T>().Remove(item);
-            context.SaveChanges();
-        }
-
-        void IRepository<T>.RemoveList(IEnumerable<T> items)
-        {
-            context.Set<T>().RemoveRange(items);
             context.SaveChanges();
         }
 
@@ -71,10 +60,5 @@ namespace Dev_space.Repository
             context.SaveChanges();
         }
 
-        void IRepository<T>.UpdateList(IEnumerable<T> items)
-        {
-            context.Set<T>().UpdateRange(items);
-            context.SaveChanges();
-        }
     }
 }

@@ -138,6 +138,9 @@
   <data name="MinLengthPassword" xml:space="preserve">
     <value>يجب الايقل عدد حروف الكلمة عن خمس ارقام</value>
   </data>
+  <data name="MinUserName" xml:space="preserve">
+    <value>يجب ان يكون اسم المستخدم اكثر من ثلاثة احرف</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>يجب ادخال الرقم السري</value>
   </data>
