@@ -21,5 +21,6 @@ namespace Dev_space.Models.AccountViewModels
         public ICollection<Commint> commints { get; set; }
         public ICollection<Link> links { get; set; }
         public ICollection<Tag> tags { get; set; }
+        public ICollection<Archive> archives { get; set; }
     }
 }

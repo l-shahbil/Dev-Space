@@ -124,6 +124,15 @@ namespace Dev_space.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to يجب ان يكون اسم المستخدم اكثر من ثلاثة احرف.
+        /// </summary>
+        public static string MinUserName {
+            get {
+                return ResourceManager.GetString("MinUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to يجب ادخال الرقم السري.
         /// </summary>
         public static string Password {

@@ -15,6 +15,7 @@ namespace Dev_space.Models
         public IFormFile Img { get; set; }
         [NotMapped]
         public string Code { get; set; }
+
         //relationships
         [ForeignKey("UserId")]
         public ApplicationUser? User { get; set; }
@@ -23,6 +24,7 @@ namespace Dev_space.Models
         public ICollection<Like> likes { get; set; }
         public ICollection<Commint> commints { get; set; }
         public ICollection<Tag> tags { get; set; }
+        public ICollection<Archive> archives { get; set; }
 
 
     }

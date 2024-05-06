@@ -1,7 +1,9 @@
 @inject UserManager<ApplicationUser> userManger
 @model RegisterVeiwModel
 
-
+@{
+    var user = await userManger.GetUserAsync(User);
+}
 <script>
     document.querySelector(".navigation > a:nth-child(2)").classList.add("active-bar");
 </script>
@@ -13,36 +15,39 @@
     <div class="twit-edite">
         <div class="input-popup-shadow" style="display: block;">
             <div class="popup-input">
+                <form enctype="multipart/form-data" method="post" asp-controller="Post" asp-action="EditPost">
+                <input name="idPost" id="input-edit-twitt-id"  hidden />
                 <p>تعديل التغريدة</p>
                 <hr>
                 <div class="popup-input-box">
-                    <div class="image-container"><img src="assites/images/Profile.png" alt="Profile"></div>
+                    <div class="image-container pro"><img src="~/Images/Personal/@(user.ImgUser)" alt="Profile"></div>
                     <div style="display: grid; grid-template-columns:1fr 1fr; width:90%; gap:10px">
-                        <textarea style="width: 100%; height: 100%" name="" id="" rows="4" placeholder="اكتب ماتفكر فيه"></textarea>
-                        <div style="overflow:hidden; background-color: gray; width: 100%; height: 150px; border-radius:10px" class="image-container"><img style="border-radius: 0px" src="~/Images/Personal/1685461194701.jpg" /></div>
+                        <input name="text" id="input-edit-twitt-text" type="text" style="width: 100%; height: 100%; background-color: #F5F5F5; border-radius:10px;padding: 10px;" rows="4" placeholder="اكتب ماتفكر فيه" value="">
+                        <div style="overflow:hidden; background-color: gray; width: 100%; height: 150px; border-radius:10px" class="image-container"><img id="edit-twitt-img" style="border-radius: 0px" src="" /></div>
                     </div>
-                    <textarea class="code-box" name="" id="" rows="5" placeholder="اكتب الكود" style="direction:ltr; display: block;"></textarea>
+                    <input name="code" id="input-edit-twitt-code" type="text"  class="code-box" placeholder="اكتب الكود" style="direction:ltr; display: block; height:120px; background-color: #F5F5F5;width:90%; border-radius:10px; padding: 10px;">
                 </div>
                 <div class="action-buttons" style="margin-top: 16px;"> 
                     <input type="submit" class="btn btn-primary" value="نشر">
                     <div class="btn btn-secondary cansle-btn" onclick="showAndHide('twit-edite')" style="display: inline-block;">الغاء</div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
 
     <div class="account-information">
         <div class="image-container header-image">
-            <img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="">
+            <img src="~/Images/Personal/@(user.CoverImgUser)" alt="">
         </div>
         <div class="image-container profile-image">
-            <img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)"  alt="">
+            <img src="~/Images/Personal/@(user.ImgUser)"  alt="">
         </div>
         <div class="profile-account-info">
             <div class="account-name-and-btn">
                 <div class="account-names">
-                    <h2 class="name">@((await userManger.GetUserAsync(User)).Name)</h2>
-                    <p class="user-name">@((await userManger.GetUserAsync(User)).UserName)</p>
+                    <h2 class="name">@(user.Name)</h2>
+                    <p class="user-name">@(user.UserName)</p>
                 </div>
                 <div style="display:flex; gap: 10px">
                     <button class="btn btn-secondary btn-hover" onclick="showAndHide('pass')">تغيير كلمة السر</button>
@@ -50,7 +55,7 @@
                 </div>
             </div>
             <p class="account-bio">
-                @((await userManger.GetUserAsync(User)).Description)
+                @(user.Description)
             </p>
             <div class="social-accounts-btns">
                     @foreach (var item in ViewBag.MyLink)
@@ -83,31 +88,36 @@
         </div>
         <hr>
     </div>
-    <div class="account-twits">        
+    <div class="account-twits">  
+            @{int counter = 0;}
             @foreach (var post in ViewBag.listPost )
             {
-                <div class="twit-container">
+                  
+                   <div class="twit-container">
                     <div class="twit-header">
                         <div class="account-info">
-                        <div class="image-container"><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt=""></div>
+                        <div class="image-container pro"><img src="~/Images/Personal/@(user.ImgUser)" alt=""></div>
                         <div class="user-info">
-                            <p class="account-name">@((await userManger.GetUserAsync(User)).Name)</p>
-                            <small class="account-username">@((await userManger.GetUserAsync(User)).UserName)</small>
+                            <p class="account-name">@(user.Name)</p>
+                            <small class="account-username">@(user.UserName)</small>
                         </div>
                         </div>
-                        <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow');getPostId('@(post.Id)')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+                        <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow');DeletePost('@(post.Id)');EditPost(@counter)"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
                     </div>
                     <div class="twit-content">
+                    <input id="@($"id-post{counter}")" value="@post.Id" hidden/>
                         @if(post.Text != string.Empty)
                         {
-                            <pre class="content">@post.Text</pre>
+                            <pre id="@($"post-text{counter}")" class="content">@post.Text</pre>
                         }
                         @if(post.Codes != null)
                         {
                             @foreach (var code in post.Codes)
                             {
-                                <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
-                                <pre class="code" style="direction: ltr;">@code.CodeText</pre>
+                                <div style="position: relative">
+                                    <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                                    <pre id="@($"post-code{counter}")" class="code" style="direction: ltr;">@code.CodeText</pre>
+                                </div>
                             }
                         }
                         @if(post.Imgs != null)
@@ -115,39 +125,69 @@
                             @foreach (var img in post.Imgs)
                             {
                                 <div class="image-container twit-image">
-                                    <img src="~/Images/Post/@img.pathImg" alt="">
+                                    <img id="@($"post-img{counter}")" src="~/Images/Post/@img.pathImg" alt="">
                                 </div>
                             }
                         }
                     </div>
-                   @* <div class="twit-intraction-buttons">
+                   <div class="twit-intraction-buttons">
+                        @{
+                    var likeForUser = (post.likes as IEnumerable<Like>).FirstOrDefault(u => u.User == user);
+                    if (likeForUser != null)
+                    {
                         <button class="like">
-                            <div class="image-cntainer share"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
-                            <p class="like-amount">215 اعجاب</p>
+                            <div class="image-cntainer share"><img onclick="disLike(this,'@likeForUser.Id','Profile','')" src="~/lib/assites/Icons/Hover-outline-heart.svg" alt=""></div>
+                        <p class="like-amount">@((post.likes as IEnumerable<Like>).Count()) اعجاب</p>
                         </button>
-                        <button class="comment">
-                            <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
-                            <p class="comment-amount">13 تعليق</p>
+                    }
+                    else
+                    {
+                        <button class="like">
+                            <div class="image-cntainer share"><img onclick="like(this,'@post.Id','Profile','')" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                        <p class="like-amount">@((post.likes as IEnumerable<Like>).Count()) اعجاب</p>
                         </button>
-                        <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>
-                        <button class="image-cntainer bookmark"><img onclick="changeStatusToHover(this)" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></button>
-                    </div>*@
+                    }
+                }
+                @*
+                <button class="comment">
+                    <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                    <p class="comment-amount">13 تعليق</p>
+                </button>
+                <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>*@
+                    @{                         
+                        var archive  = (post.archives as IEnumerable<Archive>).FirstOrDefault(u => u.User == user);
+                        if(archive != null)
+                    {
+                        
+                        <butcton class="image-cntainer bookmark"><img onclick="removeBookMark(this,'@archive.Id','Profile','')" src="~/lib/assites/Icons/Hover-outline-bookmark.svg" alt=""></butcton>
+                    }
+                    else
+                    {
+                        <butcton class="image-cntainer bookmark"><img onclick="AddBookMark(this,'@post.Id','Profile','')" src="~/lib/assites/Icons/outline-bookmark.svg" alt=""></butcton>
+
+                    }
+                 }
                 </div>
+            </div>
+            
+                {
+                    counter++;
+                }
             }
     </div>
 
     <div class="more-popup-shadow">
         <div class="popup-more-option">
-                <button class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite'), showAndHide('more-popup-shadow')">تعديل</button>
+                <a style="text-align:center" class="btn btn-secondary btn-hover" onclick="showAndHide('twit-edite'), showAndHide('more-popup-shadow')">تعديل</a>
                 <a style="text-align:center" id="ShareButton" class="btn btn-secondary btn-hover">مشاركة</a>
-                <a style="text-align:center" id="DeleteButton" class="btn btn-primary danger btn-hover">حذف المنشور</a>
+                <a style="text-align:center" id="DeleteButton" class="btn btn-primary danger btn-hover" >حذف المنشور</a>
                 <button  class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
         </div>
     </div>
 
     <div class="edit-popup-shadow info">
         <form asp-action="UpdateUserData" asp-controller="Profile" class="popup-edit"  method="post" enctype="multipart/form-data" >
-            <input asp-for="ChangeUserData.Id"  value="@((await userManger.GetUserAsync(User)).Id)" hidden/>
+            <input asp-for="ChangeUserData.Id"  value="@(user.Id)" hidden/>
             <div class="edit-header">
                 <div>
                     <div onclick="showAndHide('edit-popup-shadow')" style="cursor: pointer;" class="image-container"><img src="~/lib/assites/Icons/close-x-icone.svg" alt=""></div>
@@ -158,12 +198,12 @@
             <div class="edit-images">
 
                 <div class="image-container header-image">
-                    <img id="imgCover" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).CoverImgUser)" alt="Cover image" onclick="opne('imgCov');">
+                    <img id="imgCover" src="~/Images/Personal/@(user.CoverImgUser)" alt="Cover image" onclick="opne('imgCov');">
                     <input asp-for="ChangeUserData.ImgCover" type="file" onchange="loadFile(event,'imgCover')" placeholder="click here" id="imgCov"/>
                 </div>
                 <div class="image-container profile-image">
 
-                    <img id="imgProfile" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile image" onclick="opne('imgPro');">
+                    <img id="imgProfile" src="~/Images/Personal/@(user.ImgUser)" alt="Profile image" onclick="opne('imgPro');">
                     <input asp-for="ChangeUserData.ImgProfile" type="file" onchange="loadFile(event,'imgProfile')" placeholder="click here" id="imgPro" />
 
                 </div>
@@ -174,24 +214,24 @@
                     <div>
                         <small>الاسم</small>
                         <div class="names-input-boxs">
-                            <input asp-for="ChangeUserData.Name" type="text" class="input" placeholder="الاسم" value="@((await userManger.GetUserAsync(User)).Name)">
-                            
+                            <input asp-for="ChangeUserData.Name" type="text" class="input" placeholder="الاسم" value="@(user.Name)">
+                            <span asp-validation-for="ChangeUserData.Name" class="danger"></span>
                         </div>
                     </div>
                     <div>
                         <small>اسم المستخدم</small>
-                        <input asp-for="ChangeUserData.UserName" type="text" class="input" placeholder="اسم المستخدم" value="@((await userManger.GetUserAsync(User)).UserName)">
-                        
+                        <input asp-for="ChangeUserData.UserName" type="text" class="input" placeholder="اسم المستخدم" value="@(user.UserName)">
+                        <span asp-validation-for="ChangeUserData.userName" class="danger"></span>
                     </div>
                     <div>
                         
                         <small>النبذه الشخصية</small>
-                        <input type="text" style="width:100%;height:80px;" asp-for="ChangeUserData.Discription" cols="30" rows="5" placeholder="النبذه الشخصية"  value="@((await userManger.GetUserAsync(User)).Description)"/>
+                        <input type="text" style="width:100%;height:80px;" asp-for="ChangeUserData.Discription" cols="30" rows="5" placeholder="النبذه الشخصية"  value="@(user.Description)"/>
                        
                     </div>
                 </div>
                 <div class="social-accounts-links">
-                    <h4>روابط البرامج الاخرى</h4>8
+                    <h4>روابط البرامج الاخرى</h4>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/instagram.svg" alt=""></div><input asp-for="ChangeUserData.LinkInstagram" type="text" placeholder="هنا ضع الرابط"  id="inputLinkInstgram"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/x.svg" alt=""></div><input asp-for="ChangeUserData.LinkTwitter" type="text" placeholder="هنا ضع الرابط" id="inputLinkTwitter"/></div>
                     <div><div class="image-cntainer"><img src="~/lib/assites/Icons/social icons/behance.svg" alt=""></div><input asp-for="ChangeUserData.LinkBehance" type="text" placeholder="هنا ضع الرابط" id="inputLinkBehance"/></div>
@@ -215,7 +255,7 @@
                 <div class="change-password">
                     <h4>تغيير كلمة السر</h4>
                     <div>
-                        <input asp-for="ChangePassword.id" value="@((await userManger.GetUserAsync(User)).Id)" hidden/>
+                        <input asp-for="ChangePassword.id" value="@(user.Id)" hidden/>
                         <small>كلمة المرور الجديدة</small>
                         <input asp-for="ChangePassword.NewPassword" type="text" class="input" placeholder="كلمة المرور الجديدة" >
                         <span asp-validation-for="ChangePassword.NewPassword" class="danger"></span>

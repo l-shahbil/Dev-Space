@@ -6,6 +6,7 @@
 </head>
 
 <div class="search-result-page">
+    @*in order to redirect to action serach after follow or unFollow*@
     <input id="wordSearch" value="@ViewBag.wordSearch"  hidden/>
     <div class="person-result">
         <h3>الأشخاص</h3>
@@ -16,7 +17,7 @@
         {
             <div class="personal-card">
                 <div class="personal-info">
-                     <div class="image-container" style="width: 50px;"><img src="~/Images/Personal/@user.ImgUser" alt=""></div>
+                     <div class="image-container pro" style="width: 50px;"><img src="~/Images/Personal/@user.ImgUser" alt=""></div>
                     <a href="/FriendProfile/Index?name=@user.UserName">
                         <div class="user-info">
                             <p class="account-name">@user.Name</p>

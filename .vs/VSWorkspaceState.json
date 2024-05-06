@@ -3,14 +3,14 @@
     "",
     "\\Dev_space",
     "\\Dev_space\\Dev_space",
-    "\\Dev_space\\Dev_space\\Data",
+    "\\Dev_space\\Dev_space\\Controllers",
     "\\Dev_space\\Dev_space\\Views",
-    "\\Dev_space\\Dev_space\\Views\\Accounts",
     "\\Dev_space\\Dev_space\\Views\\Profile",
     "\\Dev_space\\Dev_space\\Views\\Shared",
     "\\Dev_space\\Dev_space\\wwwroot",
-    "\\Dev_space\\Dev_space\\wwwroot\\js"
+    "\\Dev_space\\Dev_space\\wwwroot\\Images",
+    "\\Dev_space\\Dev_space\\wwwroot\\Images\\Personal"
   ],
-  "SelectedNode": "\\Dev_space\\Dev_space\\Data\\AppDbContext.cs",
+  "SelectedNode": "\\Dev_space\\Dev_space\\Controllers\\BookmarksController.cs",
   "PreviewInSolutionExplorer": false
 }

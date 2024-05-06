@@ -22,7 +22,7 @@
                 <h1 class="logo"><span>Dev</span>Space</h1>
                <form asp-controller="Home" asp-action="Search" method="post">
                 <div class="search-box">
-                        <input name="userName" type="search" class="search-input " placeholder="اكتب ما تريد البحث عنه" >
+                        <input name="userName" type="search" class="search-input " placeholder="اكتب ما تريد البحث عنه" value=@ViewBag.wordSearch>
                         <div class="image-container"><img src="~/lib/assites/Icons/search-normal.svg" alt="search"></div>
                 </div>
                 </form>
@@ -34,14 +34,14 @@
                     <div class="navigation" style="margin-top:40px">
                         <a class="nav " asp-controller="Home" asp-action="Index" > <img src="~/lib/assites/Icons/home.svg" alt=""> الرئيسية</a>
                         <a class="nav" asp-controller="Profile" asp-action="Index" > <img src="~/lib/assites/Icons/profile.svg" alt=""> الملف الشخصي</a>
-                        @*<a class="nav" asp-controller="Notification" asp-action="notification" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>
-                        <a class="nav" asp-controller="Bookmarks" asp-action="bookmarks" > <img src="~/lib/assites/Icons/Bookmark.svg" alt=""> المحفوظات</a>*@
+                        @*<a class="nav" asp-controller="Notification" asp-action="notification" > <img src="~/lib/assites/Icons/notification.svg" alt=""> التنبيهات</a>*@
+                        <a class="nav" asp-controller="Bookmarks" asp-action="ShowBookMarks" > <img src="~/lib/assites/Icons/Bookmark.svg" alt=""> المحفوظات</a>
                         <a class="nav logout" asp-controller="Accounts" asp-action="Logout"> <img src="~/lib/assites/Icons/Logout.svg" alt=""> تسجيل الخروج</a>
                     </div>
                 </div>
 
                 <div class="center-side">
-                    <main role="main" style="height:100%">
+                    <main role="main" style="height:100%; margin: 0 0 300px">
                     @RenderBody()
 
                     </main>  
@@ -53,7 +53,7 @@
                         <div class="short-profile-background" style="height: 80px; margin-bottom: -16px; width: 200px;"></div>
                         <div class="flex" style="gap: 10px;align-items: end; justify-content: center;">
 
-                            <div class="image-container" style="width: 60px;"><img style="border-radius: 50%; border: 1px solid #00000026;" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt=""></div>
+                            <div class="image-container pro" style="width: 60px; height: 60px"><img style="border-radius: 50%; border: 1px solid #00000026;" src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt=""></div>
                             <div class="short-profile-info">
                                 @if (singManger.IsSignedIn(User))
                                 {

@@ -26,7 +26,7 @@ namespace Dev_space.ViewComponents
             var userWithFriends = _userManger.Users.Include(u => u.friends).FirstOrDefault(u => u.Id ==user.Id);
             var listFriends = userWithFriends.friends;
 
-            var posts = _repoPost.FindAllItem("User","Codes","Imgs");
+            var posts = _repoPost.FindAllItem("User","Codes","Imgs", "archives", "likes");
             var postHisFriends = listFriends.SelectMany(friend => posts.Where(p => p.User.Id == friend.IdFriend)).ToList();
 
             var OrderPosts = postHisFriends.OrderByDescending(e => e.Date).Skip((pageNumber - 1) * pageSize).Take(pageSize);

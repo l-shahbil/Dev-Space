@@ -240,7 +240,7 @@ border-radius: 50%;
     background-color: var(--input-boxs);
     padding: 1px 16px;
     height: 48px;
-    width: 100%;
+    width: 90%;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -485,8 +485,9 @@ display: none;
 }
 
 .header-image {
-height: 250px;
-overflow: hidden;
+    height: 250px;
+    overflow: hidden;
+    border-bottom:  1px solid #0000001f;
 }
 
 .profile-image {
@@ -887,7 +888,17 @@ align-self: self-start;
     padding: 16px;
     border-radius: 10px;
 }
-
+.image-container.pro{
+    overflow: hidden;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.image-container.pro img {
+    border-radius: 0px;
+    width: 100%;
+    max-width: 100%;    
+}
 
 /* Left side bar #################################################################################*/
 .layout .body .left-sidebar {

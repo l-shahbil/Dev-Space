@@ -16,12 +16,12 @@
         <p>في ماذا تفكر؟</p>
         <hr>
         <div class="input-box">
-            <div class="image-container" style="width:50px"><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile"></div>
+            <div class="image-container pro" ><img src="~/Images/Personal/@((await userManger.GetUserAsync(User)).ImgUser)" alt="Profile"></div>
             <div class="add-twit" onclick="showAndHide('input-popup-shadow'), document.getElementById('twit-text').focus()" ><small style="" >اكتب ما تفكر فيه</small></div>
         </div>
                             
         <div class="input-popup-shadow">
-                <form asp-action="Post" enctype="multipart/form-data" method="post">
+                <form asp-action="Post" asp-controller="Post" enctype="multipart/form-data" method="post">
                     <div class="popup-input">
                         <p>في ماذا تفكر؟</p>
                         <hr>
@@ -45,11 +45,11 @@
                 </form>
         </div>
         <div class="more-popup-shadow">
-                                    <div class="popup-more-option">
-                                    <button class="btn btn-secondary btn-hover">مشاركة</button>
-                                    <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
-                                    </div>
-                   </div>
+            <div class="popup-more-option">
+            <button class="btn btn-secondary btn-hover">مشاركة</button>
+            <button class="btn btn-secondary btn-hover" onclick="showAndHide('more-popup-shadow')">الغاء</button>
+            </div>
+        </div>
     </div>
     
 
@@ -58,6 +58,9 @@
         @await Component.InvokeAsync("GetPosts")
         </div>
      </div>
+
+
+
 @section Scripts{
     <script>
         var pageNumber = 2;
@@ -86,9 +89,13 @@
                 });
             }
         }
-        fetchData();
+        if(displayButtonMore == 1 ){
+                           document.getElementById('button-for-more').style.display = 'none';
+       }
+       document.onload(updateHomePage());
+       
     </script>
 }
 
-    <button class="btn btn-primary btn-hover d-block" style="margin-top:20px" onclick="fetchData();">المزيد</button>
+    <button id="button-for-more" class="btn btn-primary btn-hover d-block" style="margin-top:20px" onclick="fetchData();">المزيد</button>
 </div>

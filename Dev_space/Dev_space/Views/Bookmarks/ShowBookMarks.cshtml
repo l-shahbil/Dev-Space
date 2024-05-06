@@ -1,0 +1,95 @@
+﻿@inject UserManager<ApplicationUser> userManager
+@model IEnumerable<Post>
+
+<script>
+    document.querySelector(".navigation > a:nth-child(4)").classList.add("active-bar");
+</script>
+
+@{
+    var user = await userManager.GetUserAsync(User);
+}
+
+<div class="bookmark-page" style="padding: 0 0 200px">
+    <div class="bookmark-twits-container">
+        @if(Model != null)
+        {
+            @foreach (var post in Model)
+            {
+                <div class="twit-container">
+                    <div class="twit-header">
+                        <div class="account-info">
+                        <div class="image-container pro"><img src="~/Images/Personal/@post.User.ImgUser" alt=""></div>
+                        
+                            <div class="user-info">
+                                <p class="account-name">@post.User.Name</p>
+                                <a href="/FriendProfile/Index?name=@post.User.UserName"><small class="account-username">@post.User.UserName</small></a>
+                            </div>
+                        
+                        </div>
+                        <div class="image-container more-option-btn" onclick="showAndHide('more-popup-shadow');getPostId('@(post.Id)')"><img src="~/lib/assites/Icons/Options.svg" alt=""></div>
+                    </div>
+                    <div class="twit-content">
+                        @if(post.Text != string.Empty)
+                        {
+                            <pre class="content">@post.Text</pre>
+                        }
+                        @if(post.Codes != null)
+                        {
+                            @foreach (var code in post.Codes)
+                            {
+                                <div style="position: relative">
+                                    <button onclick="copyCode('code')" class="btn copy-code-btn">نسخ الكود</button>
+                                    <pre class="code" style="direction: ltr;">@code.CodeText</pre>
+                                </div>
+                            }
+                        }
+                        @if(post.Imgs != null)
+                        {
+                            @foreach (var img in post.Imgs)
+                            {
+                                <div class="image-container twit-image">
+                                    <img src="~/Images/Post/@img.pathImg" alt="">
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="twit-intraction-buttons">
+                         @{
+                            var likeForUser = post.likes.FirstOrDefault(u => u.User == user);
+                            if (likeForUser != null)
+                            {
+                                <button class="like">
+                                    <div class="image-cntainer share"><img onclick="disLike(this,'@likeForUser.Id','ShowBookMarks','')" src="~/lib/assites/Icons/Hover-outline-heart.svg" alt=""></div>
+                                <p class="like-amount">@(post.likes.Count()) اعجاب</p>
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="like">
+                                    <div class="image-cntainer share"><img onclick="like(this,'@post.Id','ShowBookMarks','')" src="~/lib/assites/Icons/outline-heart.svg" alt=""></div>
+                                <p class="like-amount">@(post.likes.Count()) اعجاب</p>
+                                </button>
+                            }
+                        }
+                        @*
+                        <button class="comment">
+                            <div class="image-cntainer share"><img src="~/lib/assites/Icons/comment.svg" alt=""></div>
+                            <p class="comment-amount">13 تعليق</p>
+                        </button>
+                        <button class="image-cntainer share"><img src="~/lib/assites/Icons/share.svg" alt=""></button>*@
+                        @{
+                            var archive = post.archives.FirstOrDefault(u => u.User == user);
+                            if (archive != null)
+                            {
+
+                                <butcton class="image-cntainer bookmark"><img onclick="removeBookMark(this,'@archive.Id','ShowBookMarks','')" src="~/lib/assites/Icons/Hover-outline-bookmark.svg" alt=""></butcton>
+                            }
+
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

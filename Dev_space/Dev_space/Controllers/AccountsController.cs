@@ -13,12 +13,20 @@ namespace Dev_space.Controllers
         private readonly UserManager<ApplicationUser> _userManger;
         private readonly SignInManager<ApplicationUser> _singManger;
         private IRepository<Link> _repoLinks;
+        private IRepository<ApplicationUser> _repoUser;
+        private IRepository<Friend> _repoFriend;
+        private IRepository<Post> _repoPost;
+        private IRepository<Like> _repoLike;
 
-        public AccountsController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> singManger,IRepository<Link> repoLinks)
+        public AccountsController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> singManger,IRepository<Link> repoLinks,IRepository<ApplicationUser>repoUser,IRepository<Friend> repoFriend,IRepository<Post> repoPost,IRepository<Like> repoLike)
         {
             _userManger = userManger;
             _singManger = singManger;
             _repoLinks = repoLinks;
+            _repoUser = repoUser;
+            _repoFriend = repoFriend;
+            _repoPost = repoPost;
+            _repoLike = repoLike;
         }
        
         [AllowAnonymous]
@@ -115,19 +123,21 @@ namespace Dev_space.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var result = await _singManger.PasswordSignInAsync(model.UserName, model.Password, model.RemmeberMe, false);
-                if (result.Succeeded)
+
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Home");
+                    var result = await _singManger.PasswordSignInAsync(model.UserName, model.Password, model.RemmeberMe, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.ErrorLogin = false;
+                    }
                 }
-                else
-                {
-                    ViewBag.ErrorLogin = false;
-                }
-            }
-            return View(model);
+                return View(model);
+           
         }
 
         public async Task<IActionResult> Logout(LoginViewModel model)
@@ -135,26 +145,153 @@ namespace Dev_space.Controllers
             await _singManger.SignOutAsync();
             return RedirectToAction("Login");
         }
-        public IActionResult ResetPasswordConfirmation()
+        public async Task<IActionResult> Follow(string userName, string pageName, string wordSearch)
         {
-            return View();
-        }
 
-        public IActionResult CompletaRegisterInfo()
-        {
-            return View();
+            var userFollower = _repoUser.SelectOne(u => u.UserName == userName);
+
+            if (userFollower != null)
+            {
+                var user = await _userManger.GetUserAsync(User);
+                Friend friend = new Friend
+                {
+                    IdFriend = userFollower.Id,
+                    User = user,
+                    DateFollow = DateTime.Now
+
+                };
+                var reFriend = _repoFriend.FindAllItem("User");
+                //In order to verify that the user is not following the friend
+                if (!reFriend.Any(f => f.IdFriend == friend.IdFriend && f.User == user))
+                {
+                    _repoFriend.AddItem(friend);
+
+                }
+                //the wordSearch for return Action Serach,because it's requierd word search
+                if (pageName == "searchPage")
+                {
+                    return RedirectToAction("Search","Home", new { userName = wordSearch });
+                }
+                else if (pageName == "ProfilePage")
+                {
+                    return RedirectToAction("Index", "FriendProfile", new { name = userName });
+                }
+            }
+            return RedirectToAction("Index","Home");
         }
-        public IActionResult EmailToResetPassword()
+        public async Task<IActionResult> unFollow(string userName, string pageName, string wordSearch)
         {
-            return View();
+            //the wordSearch for return Action Serach,because it's requierd word search
+
+            var userUnFollower = _repoUser.SelectOne(u => u.UserName == userName);
+
+            if (userUnFollower != null)
+            {
+                var user = await _userManger.GetUserAsync(User);
+                var reFriend = _repoFriend.FindAllItem("User");
+                var friend = reFriend.FirstOrDefault(f => f.IdFriend == userUnFollower.Id && f.User == user);
+                //In order to verify that the user is not following the friend
+                if (friend != null)
+                {
+                    _repoFriend.RemoveItem(friend);
+
+                }
+            }
+            if (pageName == "searchPage")
+            {
+                return RedirectToAction("Search","Home", new { userName = wordSearch });
+            }
+            else if (pageName == "ProfilePage")
+            {
+                return RedirectToAction("Index", "FriendProfile", new { name = userName });
+            }
+            return RedirectToAction("Index","Home");
+
         }
-        public IActionResult RegisterConfirmation()
+        public async Task<IActionResult> Like(string postID, string pageAction, string userFriend)
         {
-            return View();
+            if (pageAction == "Home")
+            {
+                await likeFunction(postID);
+                return RedirectToAction("Index", "Home");
+            }
+            else if (pageAction == "Profile")
+            {
+                await likeFunction(postID);
+                return RedirectToAction("Index", "Profile");
+            }
+            else if (pageAction == "FriendProfile")
+            {
+                await likeFunction(postID);
+                return RedirectToAction("index", "FriendProfile", new { name = userFriend });
+            }
+            else if (pageAction == "ShowBookMarks")
+            {
+                await likeFunction(postID);
+                return RedirectToAction("ShowBookMarks", "Bookmarks");
+            }
+            return RedirectToAction("Index", "Home");
         }
-        public IActionResult ResetPassword()
+        public async Task<IActionResult> DisLike(string likeId, string pageAction, string userFriend)
         {
-            return View();
+            if (pageAction == "Home")
+            {
+                await DisLikeFunction(likeId);
+                return RedirectToAction("Index", "Home");
+            }
+            else if (pageAction == "Profile")
+            {
+                await DisLikeFunction(likeId);
+                return RedirectToAction("Index", "Profile");
+            }
+            else if (pageAction == "FriendProfile")
+            {
+                await DisLikeFunction(likeId);
+                return RedirectToAction("index", "FriendProfile", new { name = userFriend });
+            }
+            else if (pageAction == "ShowBookMarks")
+            {
+                await DisLikeFunction(likeId);
+                return RedirectToAction("ShowBookMarks", "Bookmarks");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task likeFunction(string postID)
+        {
+            if (!string.IsNullOrEmpty(postID))
+            {
+                var user = await _userManger.GetUserAsync(User);
+                if (user != null)
+                {
+                    var post = _repoPost.FindById(postID);
+                    if (post != null)
+                    {
+                        var like = new Like
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            User = user,
+                            post = post,
+                            DateTime = DateTime.Now
+                        };
+                        _repoLike.AddItem(like);
+                    }
+                }
+
+            }
+        }
+        public async Task DisLikeFunction(string LikeId)
+        {
+            if (!string.IsNullOrEmpty(LikeId))
+            {
+                var disLike = _repoLike.FindById(LikeId);
+                if (await _userManger.GetUserAsync(User) != null)
+                {
+                    if (disLike != null)
+                    {
+                        _repoLike.RemoveItem(disLike);
+                    }
+                }
+            }
         }
     }
 }
